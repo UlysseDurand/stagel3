@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'latextrash/doc.blg'
+[55] biber:340> INFO - === Tue Jun  6, 2023, 13:10:06
+[68] Biber.pm:419> INFO - Reading 'latextrash/doc.bcf'
+[124] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[137] bbl.pm:660> INFO - Writing 'latextrash/doc.bbl' with encoding 'UTF-8'
+[137] bbl.pm:763> INFO - Output to latextrash/doc.bbl
+[137] Biber.pm:131> WARN - The file 'latextrash/doc.bcf' does not contain any citations!
+[137] Biber.pm:133> INFO - WARNINGS: 1

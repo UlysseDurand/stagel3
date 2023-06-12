@@ -1,0 +1,137 @@
+\newcommand{\letitle}{FOUINE}
+\newcommand{\leauthor}{Benjamin Duhamel \& Ulysse Durand}
+
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{bbold}
+\usepackage[xcolor,leftbars]{changebar}
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{1}
+\newenvironment{myindentpar}
+ {\begin{list}{}
+         {\setlength{\leftmargin}{1em}}
+         \item[]
+ }
+ { \end{list}}
+
+\definecolor{DarkBlue}{RGB}{0,16,80}
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\newsavebox{\mybox}
+\newlength{\mydepth}
+\newlength{\myheight}
+\newenvironment{answer}
+{\par\begin{lrbox}{\mybox}\quad\begin{minipage}{\linewidth}\color{black}\setlength{\parskip}{10pt plus 1pt minus 1pt}\vspace*{-.7\baselineskip}}
+{\end{minipage}\end{lrbox}
+\settodepth{\mydepth}{\usebox{\mybox}}
+\settoheight{\myheight}{\usebox{\mybox}}
+\addtolength{\myheight}{\mydepth}
+\noindent\makebox[0pt]{
+  \color{gray}\hspace{-0pt}\rule[-\mydepth]{1pt}{\myheight}}
+  \usebox{\mybox}
+  }
+
+\usepackage{listings}
+\lstset
+{
+    language=Caml,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+
+\usepackage{hyperref}
+\setlength{\parskip}{0.15cm}
+\hypersetup{
+    colorlinks=truem,
+    linkcolor=black,
+    filecolor=red,
+    urlcolor=blue
+}
+
+\urlstyle{same}
+
+\everymath{\displaystyle}
+\title{\letitle}
+\author{\leauthor}
+\institute{}
+\date{}
+\begin{document}
+
+\maketitle
+\begin{frame}
+La fouine est un interpréteur \texttt{ OCaml } qui a pour but de faire fouiner
+ses créateurs dans l'implémentation d'un langage fonctionnel.
+
+\end{frame}
+\begin{frame}
+\frametitle{Exemple de code}
+
+
+\texttt{ let rec f x n = if n = 0 then x else f (match x with |(y,z) -> (z, y+z)) (n-1) in f (0,1) 10 }
+
+est un code \texttt{ OCaml } qui permettrait de calculer le dixième terme de la suite de fibonacci
+
+C'est aussi un code \texttt{ fouine }
+
+\end{frame}
+\begin{frame}
+\frametitle{Les expressions}
+
+
+On traduit le code en un arbre d'expression
+
+Exemple avec \texttt{ if true then (3+4)*7 else false }
+
+\end{frame}
+\begin{frame}
+\frametitle{Implémentation des références}
+
+
+On a une mémoire qui est un long array, l'adressage mémoire est naïf.
+
+\end{frame}
+\begin{frame}
+\frametitle{Implémentation des fonctions}
+
+
+Pour une fonction représentée par \texttt{ VFun (x, e, env) },
+appliquée à une expression \texttt{ e2 }, on évalue \texttt{ e2 }
+en ajoutant à \texttt{ env } que \texttt{ x } vaut \texttt{ e }
+
+\end{frame}
+\begin{frame}
+\frametitle{Pour les fonctions récursive}
+
+La représentation est différente, \texttt{ VFunRec (f, e, env) }
+
+On fait de même mais en "déroulant" l'environnement env, c'est à dire
+en remettant ce même \texttt{ env } dans les environnements des \texttt{ VFunRec } de \texttt{ env }.
+
+Exemple avec
+
+\texttt{ let rec f n = if n = 0 then 1 else n * (f (n-1)) in f 10 }
+
+
+\end{frame}
+\begin{frame}
+\frametitle{Implémentation des boucles (While et For)}
+
+
+Plutôt simple
+\end{frame}
+\begin{frame}
+\frametitle{Implémentation des couples et listes (avec leur matching)}
+
+
+Plutôt compliqué
+\end{frame}
+\end{document}

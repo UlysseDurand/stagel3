@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Une autre section}{2}{section.1}%
+\contentsline {section}{\numberline {2}Inférence de type monomorphe}{2}{section.2}%
+\contentsline {subsection}{Génération du problème d'unification}{2}{section*.1}%
+\contentsline {subsection}{Implémentation du problème d'unification}{2}{section*.2}%
+\contentsline {subsection}{Une fois l'unification faite}{3}{section*.3}%

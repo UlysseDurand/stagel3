@@ -1,0 +1,6 @@
+-R . Codecoq
+theories/utiles.v
+theories/jeu.v
+theories/residu.v
+theories/main.v
+tests/test.v

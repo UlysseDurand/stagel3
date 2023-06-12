@@ -1,0 +1,71 @@
+
+\documentclass[a4paper,%
+if "taillepolice" in data:
+    print(data["taillepolice"])
+else:
+    print("12pt",end='')
+%]{article}
+%
+loadpackages()
+%
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{bbold}
+\usepackage[xcolor,leftbars]{changebar}
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{1}
+\newenvironment{myindentpar}
+ {\begin{list}{}
+         {\setlength{\leftmargin}{1em}}
+         \item[]
+ }
+ { \end{list}}
+
+\definecolor{DarkBlue}{RGB}{0,16,80}
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\newsavebox{\mybox}
+\newlength{\mydepth}
+\newlength{\myheight}
+\newenvironment{answer}
+{\par\begin{lrbox}{\mybox}\quad\begin{minipage}{\linewidth}\color{black}\setlength{\parskip}{10pt plus 1pt minus 1pt}\vspace*{-.7\baselineskip}}
+{\end{minipage}\end{lrbox}
+\settodepth{\mydepth}{\usebox{\mybox}}
+\settoheight{\myheight}{\usebox{\mybox}}
+\addtolength{\myheight}{\mydepth}
+\noindent\makebox[0pt]{
+  \color{gray}\hspace{-0pt}\rule[-\mydepth]{1pt}{\myheight}}
+  \usebox{\mybox}
+  }
+
+\usepackage{listings}
+\lstset
+{
+    language=Caml,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+
+\usepackage{hyperref}
+\setlength{\parskip}{0.15cm}
+\hypersetup{
+    colorlinks=truem,
+    linkcolor=black,
+    filecolor=red,
+    urlcolor=blue
+}
+
+\urlstyle{same}
+
+\everymath{\displaystyle}
+\title{\letitle}
+\author{\leauthor}
+\date{}
+\begin{document}
