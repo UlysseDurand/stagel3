@@ -1,0 +1,238 @@
+DIGEST a1458143ce57beaa29b0c2cfe80acc48
+FCodecoq.theories.jeu
+R15:20 Codecoq.theories.utiles <> <> lib
+R38:44 Coq.Program.Program <> <> lib
+rec 305:318 <> EventStructure
+proj 329:329 <> A
+proj 341:341 <> B
+proj 358:360 <> ord
+proj 384:391 <> conflict
+proj 416:427 <> ord_ordonned
+proj 457:468 <> confl_irrefl
+proj 510:518 <> confl_sym
+proj 608:617 <> finiteness
+proj 716:723 <> vendetta
+R345:346 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R344:344 Codecoq.theories.jeu <> A:2 meth
+R365:368 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R364:364 Codecoq.theories.jeu <> A:2 meth
+R370:373 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R369:369 Codecoq.theories.jeu <> A:2 meth
+R396:399 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R395:395 Codecoq.theories.jeu <> A:2 meth
+R401:404 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R400:400 Codecoq.theories.jeu <> A:2 meth
+R430:443 Codecoq.theories.utiles <> ordonned_restr def
+R447:449 Codecoq.theories.jeu <> ord:4 meth
+R445:445 Codecoq.theories.jeu <> B:3 meth
+binder 478:478 <> e:7
+R484:485 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R481:481 Codecoq.theories.jeu <> B:3 meth
+R483:483 Codecoq.theories.jeu <> e:7 var
+R486:488 Coq.Init.Logic <> not def
+R491:498 Codecoq.theories.jeu <> conflict:5 meth
+R502:502 Codecoq.theories.jeu <> e:7 var
+R500:500 Codecoq.theories.jeu <> e:7 var
+binder 529:529 <> x:9
+binder 531:531 <> y:10
+R537:538 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R534:534 Codecoq.theories.jeu <> B:3 meth
+R536:536 Codecoq.theories.jeu <> x:9 var
+R542:544 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R539:539 Codecoq.theories.jeu <> B:3 meth
+R541:541 Codecoq.theories.jeu <> y:10 var
+R557:561 Coq.Init.Logic <> ::type_scope:x_'<->'_x not
+R545:552 Codecoq.theories.jeu <> conflict:5 meth
+R556:556 Codecoq.theories.jeu <> y:10 var
+R554:554 Codecoq.theories.jeu <> x:9 var
+R562:569 Codecoq.theories.jeu <> conflict:5 meth
+R573:573 Codecoq.theories.jeu <> x:9 var
+R571:571 Codecoq.theories.jeu <> y:10 var
+binder 627:627 <> a:12
+R633:636 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R630:630 Codecoq.theories.jeu <> B:3 meth
+R632:632 Codecoq.theories.jeu <> a:12 var
+R637:650 Codecoq.theories.utiles <> ens_fini_restr def
+binder 657:658 <> a':13
+R667:670 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R663:663 Codecoq.theories.jeu <> B:3 meth
+R665:666 Codecoq.theories.jeu <> a':13 var
+R671:673 Codecoq.theories.jeu <> ord:4 meth
+R678:678 Codecoq.theories.jeu <> a:12 var
+R675:676 Codecoq.theories.jeu <> a':13 var
+binder 733:734 <> e1:15
+binder 736:737 <> e2:16
+binder 739:741 <> e2':17
+R748:749 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R744:744 Codecoq.theories.jeu <> B:3 meth
+R746:747 Codecoq.theories.jeu <> e1:15 var
+R754:756 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R750:750 Codecoq.theories.jeu <> B:3 meth
+R752:753 Codecoq.theories.jeu <> e2:16 var
+R762:771 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R757:757 Codecoq.theories.jeu <> B:3 meth
+R759:761 Codecoq.theories.jeu <> e2':17 var
+R786:789 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R772:779 Codecoq.theories.jeu <> conflict:5 meth
+R784:785 Codecoq.theories.jeu <> e2:16 var
+R781:782 Codecoq.theories.jeu <> e1:15 var
+R800:803 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R790:792 Codecoq.theories.jeu <> ord:4 meth
+R797:799 Codecoq.theories.jeu <> e2':17 var
+R794:795 Codecoq.theories.jeu <> e2:16 var
+R804:811 Codecoq.theories.jeu <> conflict:5 meth
+R816:818 Codecoq.theories.jeu <> e2':17 var
+R813:814 Codecoq.theories.jeu <> e1:15 var
+def 865:867 <> all
+binder 871:871 <> A:19
+R883:884 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R882:882 Codecoq.theories.jeu <> A:19 var
+binder 897:897 <> a:20
+R902:905 Coq.Init.Logic <> True ind
+def 964:974 <> ferme_enbas
+binder 978:978 <> A:21
+R992:994 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R991:991 Codecoq.theories.jeu <> A:21 var
+binder 988:988 <> B:22
+R1008:1011 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1007:1007 Codecoq.theories.jeu <> A:21 var
+R1013:1016 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1012:1012 Codecoq.theories.jeu <> A:21 var
+binder 1002:1004 <> ord:23
+R1028:1029 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1027:1027 Codecoq.theories.jeu <> A:21 var
+binder 1024:1024 <> P:24
+binder 1047:1047 <> e:25
+binder 1049:1050 <> e':26
+R1056:1059 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1053:1053 Codecoq.theories.jeu <> B:22 var
+R1055:1055 Codecoq.theories.jeu <> e:25 var
+R1064:1067 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1060:1060 Codecoq.theories.jeu <> B:22 var
+R1062:1063 Codecoq.theories.jeu <> e':26 var
+R1071:1074 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1068:1068 Codecoq.theories.jeu <> P:24 var
+R1070:1070 Codecoq.theories.jeu <> e:25 var
+R1075:1075 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1084:1088 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1076:1078 Codecoq.theories.jeu <> ord:23 var
+R1083:1083 Codecoq.theories.jeu <> e:25 var
+R1080:1081 Codecoq.theories.jeu <> e':26 var
+R1089:1089 Codecoq.theories.jeu <> P:24 var
+R1091:1092 Codecoq.theories.jeu <> e':26 var
+def 1136:1146 <> conf_finite
+R1153:1166 Codecoq.theories.jeu <> EventStructure class
+binder 1149:1150 <> ES:27
+R1174:1175 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1173:1173 Codecoq.theories.jeu <> A meth
+binder 1170:1170 <> C:28
+R1187:1200 Codecoq.theories.utiles <> ens_fini_restr def
+R1202:1202 Codecoq.theories.jeu <> C:28 var
+def 1259:1269 <> conf_closed
+R1276:1289 Codecoq.theories.jeu <> EventStructure class
+binder 1272:1273 <> ES:29
+R1297:1298 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1296:1296 Codecoq.theories.jeu <> A meth
+binder 1293:1293 <> C:30
+R1310:1320 Codecoq.theories.jeu <> ferme_enbas def
+R1338:1338 Codecoq.theories.jeu <> C:30 var
+R1333:1335 Codecoq.theories.jeu <> ord meth
+R1329:1330 Codecoq.theories.jeu <> ES:29 var
+R1326:1326 Codecoq.theories.jeu <> B meth
+R1322:1323 Codecoq.theories.jeu <> ES:29 var
+def 1388:1402 <> conf_noconflict
+R1409:1422 Codecoq.theories.jeu <> EventStructure class
+binder 1405:1406 <> ES:31
+R1430:1431 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1429:1429 Codecoq.theories.jeu <> A meth
+binder 1426:1426 <> C:32
+binder 1450:1450 <> e:33
+binder 1452:1453 <> e':34
+R1459:1462 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1456:1456 Codecoq.theories.jeu <> C:32 var
+R1458:1458 Codecoq.theories.jeu <> e:33 var
+R1467:1470 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1463:1463 Codecoq.theories.jeu <> C:32 var
+R1465:1466 Codecoq.theories.jeu <> e':34 var
+R1471:1473 Coq.Init.Logic <> not def
+R1476:1483 Codecoq.theories.jeu <> conflict meth
+R1487:1488 Codecoq.theories.jeu <> e':34 var
+R1485:1485 Codecoq.theories.jeu <> e:33 var
+def 1504:1511 <> est_conf
+R1518:1531 Codecoq.theories.jeu <> EventStructure class
+binder 1514:1515 <> ES:35
+R1539:1540 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1538:1538 Codecoq.theories.jeu <> A meth
+binder 1535:1535 <> C:36
+R1568:1571 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R1552:1562 Codecoq.theories.jeu <> conf_finite def
+R1564:1565 Codecoq.theories.jeu <> ES:35 var
+R1567:1567 Codecoq.theories.jeu <> C:36 var
+R1588:1591 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R1572:1582 Codecoq.theories.jeu <> conf_closed def
+R1584:1585 Codecoq.theories.jeu <> ES:35 var
+R1587:1587 Codecoq.theories.jeu <> C:36 var
+R1592:1606 Codecoq.theories.jeu <> conf_noconflict def
+R1608:1609 Codecoq.theories.jeu <> ES:35 var
+R1611:1611 Codecoq.theories.jeu <> C:36 var
+rec 1621:1633 <> configuration
+proj 1666:1666 <> C
+proj 1686:1697 <> conf_axiomes
+R1640:1653 Codecoq.theories.jeu <> EventStructure class
+binder 1637:1638 <> ES:37
+R1671:1675 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1670:1670 Codecoq.theories.jeu <> A meth
+R1701:1708 Codecoq.theories.jeu <> est_conf def
+R1710:1711 Codecoq.theories.jeu <> ES:37 var
+R1713:1713 Codecoq.theories.jeu <> C:39 meth
+def 1775:1787 <> union_subsets
+binder 1791:1791 <> A:41
+R1806:1807 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1805:1805 Codecoq.theories.jeu <> A:41 var
+binder 1801:1801 <> B:42
+R1821:1822 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1820:1820 Codecoq.theories.jeu <> A:41 var
+binder 1815:1816 <> B':43
+binder 1836:1836 <> x:44
+R1844:1847 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R1841:1841 Codecoq.theories.jeu <> B:42 var
+R1843:1843 Codecoq.theories.jeu <> x:44 var
+R1848:1849 Codecoq.theories.jeu <> B':43 var
+R1851:1851 Codecoq.theories.jeu <> x:44 var
+def 1866:1881 <> subset_singleton
+binder 1885:1885 <> A:45
+R1898:1898 Codecoq.theories.jeu <> A:45 var
+binder 1895:1895 <> x:46
+binder 1908:1908 <> a:47
+R1914:1916 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1913:1913 Codecoq.theories.jeu <> a:47 var
+R1917:1917 Codecoq.theories.jeu <> x:46 var
+def 1932:1940 <> justifies
+R1947:1960 Codecoq.theories.jeu <> EventStructure class
+binder 1944:1945 <> ES:48
+R1966:1978 Codecoq.theories.jeu <> configuration class
+binder 1964:1964 <> x:49
+R1984:1984 Codecoq.theories.jeu <> A meth
+binder 1982:1982 <> e:50
+R2000:2003 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R1991:1993 Coq.Init.Logic <> not def
+R1996:1996 Codecoq.theories.jeu <> C meth
+R1998:1998 Codecoq.theories.jeu <> e:50 var
+R2004:2011 Codecoq.theories.jeu <> est_conf def
+R2013:2014 Codecoq.theories.jeu <> ES:48 var
+R2017:2029 Codecoq.theories.jeu <> union_subsets def
+R2034:2049 Codecoq.theories.jeu <> subset_singleton def
+R2051:2051 Codecoq.theories.jeu <> e:50 var
+R2031:2031 Codecoq.theories.jeu <> C meth
+ind 2067:2072 <> player
+constr 2078:2078 <> P
+constr 2090:2090 <> O
+R2081:2086 Codecoq.theories.jeu <> player:51 ind
+R2093:2098 Codecoq.theories.jeu <> player:51 ind
+rec 2108:2111 <> Game
+proj 2122:2123 <> ES
+proj 2147:2154 <> polarity
+R2127:2140 Codecoq.theories.jeu <> EventStructure class
+R2159:2162 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2158:2158 Codecoq.theories.jeu <> A meth
+R2163:2168 Codecoq.theories.jeu <> player ind

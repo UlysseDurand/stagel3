@@ -1,0 +1,122 @@
+DIGEST af4ba57f34a979c454f8954e1e3f5747
+FCodecoq.tests.test
+R15:20 Codecoq.theories.utiles <> <> lib
+R38:41 Codecoq.theories.main <> <> lib
+R59:61 Codecoq.theories.jeu <> <> lib
+R79:84 Codecoq.theories.residu <> <> lib
+ind 98:102 <> MBool
+constr 107:107 <> q
+constr 111:112 <> tt
+constr 115:116 <> ff
+R127:146 Codecoq.theories.jeu <> Build_EventStructure constr
+def 161:166 <> estmin
+binder 170:170 <> A:3
+R186:187 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R185:185 Codecoq.tests.test <> A:3 var
+R189:190 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R188:188 Codecoq.tests.test <> A:3 var
+binder 180:182 <> ord:4
+R200:200 Codecoq.tests.test <> A:3 var
+binder 198:198 <> x:5
+binder 215:215 <> y:6
+R225:228 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R218:220 Codecoq.tests.test <> ord:4 var
+R224:224 Codecoq.tests.test <> x:5 var
+R222:222 Codecoq.tests.test <> y:6 var
+R230:232 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R229:229 Codecoq.tests.test <> y:6 var
+R233:233 Codecoq.tests.test <> x:5 var
+def 248:254 <> BoolOrd
+binder 256:256 <> x:7
+binder 258:258 <> y:8
+R266:270 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R296:296 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R264:264 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R263:263 Codecoq.tests.test <> x:7 var
+R265:265 Codecoq.tests.test <> y:8 var
+R274:278 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R295:295 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R272:272 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R271:271 Codecoq.tests.test <> x:7 var
+R273:273 Codecoq.tests.test <> q constr
+R285:288 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R280:282 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R279:279 Codecoq.tests.test <> y:8 var
+R283:284 Codecoq.tests.test <> tt constr
+R290:292 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R289:289 Codecoq.tests.test <> y:8 var
+R293:294 Codecoq.tests.test <> ff constr
+prf 308:320 <> ordonned_bool
+R324:337 Codecoq.theories.utiles <> ordonned_restr def
+R355:361 Codecoq.tests.test <> BoolOrd def
+binder 344:344 <> x:9
+R349:352 Coq.Init.Logic <> True ind
+def 388:399 <> BoolConflict
+binder 401:401 <> x:10
+binder 403:403 <> y:11
+R408:408 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R425:430 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R447:447 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R415:418 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R410:412 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R409:409 Codecoq.tests.test <> x:10 var
+R413:414 Codecoq.tests.test <> tt constr
+R420:422 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R419:419 Codecoq.tests.test <> y:11 var
+R423:424 Codecoq.tests.test <> ff constr
+R437:440 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R432:434 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R431:431 Codecoq.tests.test <> x:10 var
+R435:436 Codecoq.tests.test <> ff constr
+R442:444 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R441:441 Codecoq.tests.test <> y:11 var
+R445:446 Codecoq.tests.test <> tt constr
+prf 459:482 <> irreflexive_boolconflict
+binder 493:493 <> e:12
+R496:498 Coq.Init.Logic <> not def
+R501:512 Codecoq.tests.test <> BoolConflict def
+R514:514 Codecoq.tests.test <> e:12 var
+R516:516 Codecoq.tests.test <> e:12 var
+prf 540:561 <> symmetric_boolconflict
+binder 572:572 <> x:13
+binder 574:574 <> y:14
+R593:597 Coq.Init.Logic <> ::type_scope:x_'<->'_x not
+R577:588 Codecoq.tests.test <> BoolConflict def
+R590:590 Codecoq.tests.test <> x:13 var
+R592:592 Codecoq.tests.test <> y:14 var
+R598:609 Codecoq.tests.test <> BoolConflict def
+R611:611 Codecoq.tests.test <> y:14 var
+R613:613 Codecoq.tests.test <> x:13 var
+def 648:654 <> es_bool
+R662:681 Codecoq.theories.jeu <> Build_EventStructure constr
+R683:687 Codecoq.tests.test <> MBool ind
+binder 694:694 <> x:15
+R697:700 Coq.Init.Logic <> True ind
+R703:709 Codecoq.tests.test <> BoolOrd def
+R711:722 Codecoq.tests.test <> BoolConflict def
+R761:773 Codecoq.tests.test <> ordonned_bool prfax
+R761:773 Codecoq.tests.test <> ordonned_bool prfax
+R806:829 Codecoq.tests.test <> irreflexive_boolconflict prfax
+R806:829 Codecoq.tests.test <> irreflexive_boolconflict prfax
+R862:883 Codecoq.tests.test <> symmetric_boolconflict prfax
+R862:883 Codecoq.tests.test <> symmetric_boolconflict prfax
+def 921:921 <> f
+R934:938 Codecoq.tests.test <> MBool ind
+binder 931:931 <> x:16
+R950:950 Codecoq.tests.test <> x:16 var
+R958:958 Codecoq.tests.test <> q constr
+R966:967 Codecoq.tests.test <> tt constr
+R976:977 Codecoq.tests.test <> ff constr
+R998:998 Codecoq.tests.test <> f def
+R998:998 Codecoq.tests.test <> f def
+def 1134:1140 <> JeuBool
+R1148:1157 Codecoq.theories.jeu <> Build_Game constr
+R1159:1165 Codecoq.tests.test <> es_bool def
+binder 1172:1172 <> x:18
+R1183:1183 Codecoq.tests.test <> x:18 var
+R1191:1191 Codecoq.tests.test <> q constr
+R1196:1196 Codecoq.theories.jeu <> O constr
+R1199:1200 Codecoq.tests.test <> tt constr
+R1205:1205 Codecoq.theories.jeu <> P constr
+R1209:1210 Codecoq.tests.test <> ff constr
+R1215:1215 Codecoq.theories.jeu <> P constr

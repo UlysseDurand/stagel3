@@ -86,6 +86,10 @@ Definition subset_singleton `{A: Type} (x: A) := fun a => a = x.
 Definition justifies `{ES:EventStructure} (x:configuration) (e:A):=
   not (C e) /\ est_conf ES (union_subsets C (subset_singleton e)).
 
+(**
+* Définition d'un jeu
+ *)
+
 Inductive player:=
 | P: player
 | O: player.
