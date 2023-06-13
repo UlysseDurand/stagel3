@@ -2,5 +2,6 @@
 theories/utiles.v
 theories/jeu.v
 theories/residu.v
+theories/strategy.v
 theories/main.v
 tests/test.v

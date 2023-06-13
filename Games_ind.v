@@ -398,6 +398,7 @@ with P_play `{G:Game}:=
 (* | nil_P : P_play *)
 | consP : forall (a:@A (@ES G)), minGame G a -> pos a -> @O_play (residual G a) -> P_play.
 
+Check consO.
 
 (* EXERCISE : extraire la liste
     play : list E;
