@@ -129,6 +129,14 @@ Definition conflictSumES (J G : Game) :=
 
 
 
+Ltac destord J:= destruct J.(ES).(ord_ordonned) as  (?Refl,(?Antisym,?Trans)).
+
+Ltac myinv :=
+  match goal with
+  | [ H:ordSumES _ _ (inl _) (inr _) |- _] => inversion H
+  | [ H:ordSumES _ _ (inr _) (inl _) |- _] => inversion H
+  end.
+
 (**
 * Jeu tenseur
  *)
@@ -147,129 +155,18 @@ Program Definition ES_tenseur :
       _.
 
 Next Obligation.
-  split.
-    intro. intros.
-    induction e.
-      unfold ordSumES.
-      pose proof J.(ES).(ord_ordonned).
-      destruct H0.
-      apply (H0 a).
-      unfold ssEnsSumES in H.
-      apply H.
-
-      unfold ordSumES.
-      pose proof G.(ES).(ord_ordonned).
-      destruct H0.
-      apply (H0 b).
-      unfold ssEnsSumES in H.
-      apply H.
-  split.
-    intro.
-    induction e.
-
-      intro.
-      induction f.
-        intros.
-        f_equal.
-        unfold ordSumES in H1.
-        unfold ordSumES in H2.
-        pose proof J.(ES).(ord_ordonned).
-          destruct H3.
-          destruct H4.
-          apply (H4 a a0).
-
-          unfold ssEnsSumES in H.
-          apply H.
-          unfold ssEnsSumES in H0.
-          apply H0.
-          apply H1. apply H2.
-
-        intros.
-        inversion H1.
-
-      induction f.
-
-        intros.
-        inversion H1.
-
-        intros.
-        f_equal.
-        unfold ordSumES in H1.
-        unfold ordSumES in H2.
-        pose proof G.(ES).(ord_ordonned).
-          destruct H3.
-          destruct H4.
-          apply (H4 b b0).
-
-          unfold ssEnsSumES in H.
-          apply H.
-          unfold ssEnsSumES in H0.
-          apply H0.
-          apply H1.
-          apply H2.
-
-    pose proof J.(ES).(ord_ordonned).
-    pose proof G.(ES).(ord_ordonned).
-
-    destruct H. destruct H1. destruct H0. destruct H3.
-    intro.
-    induction e.
-      intro.
-      induction f.
-        intro.
-        induction g.
-          intros.
-          unfold ordSumES.
-          unfold ordSumES in H8.
-          unfold ordSumES in H9.
-
-          apply (H2 a a0 a1).
-          unfold ssEnsSumES in H5. apply H5.
-          unfold ssEnsSumES in H6. apply H6.
-          unfold ssEnsSumES in H7. apply H7.
-          apply H8. apply H9.
-
-          intros.
-          unfold ordSumES.
-          inversion H9.
-
-      intro.
-      induction g.
-        intros.
-        inversion H8.
-
-        intros.
-        inversion H8.
-
-    intro.
-    induction f.
-      intro.
-      induction g.
-
-        intros.
-        inversion H8.
-
-        intros.
-        inversion H8.
-
-      intro.
-      induction g.
-
-        intros.
-        inversion H9.
-
-        intros.
-        unfold ordSumES.
-        unfold ordSumES in H8.
-        unfold ordSumES in H9.
-
-        apply (H4 b b0 b1).
-        unfold ssEnsSumES in H5. apply H5.
-        unfold ssEnsSumES in H6. apply H6.
-        unfold ssEnsSumES in H7. apply H7.
-        apply H8. apply H9.
+  repeat split.
+  - intros e H.
+    destruct e;[destord J|destord G];now apply Refl.
+  - intros e f He Hf Ordef Ordfe.
+    destruct e;destruct f;intros;try inversion Ordfe;
+      f_equal;[destord J |destord G]; now apply Antisym.
+  - intros x y z Hx Hy Hz Ordxy Ordyz;
+      destord J;destord G.
+    destruct x, y, z;try myinv.
+    + apply Trans with a0;assumption.
+    + apply Trans0 with a0;assumption.
 Qed.
-
 Next Obligation.
   induction e.
     intro.
