@@ -98,3 +98,330 @@ Class Game := {
     ES : EventStructure;
     polarity : A -> player
   }.
+
+Definition sumES (J G : Game) :=
+  sum J.(ES).(A) G.(ES).(A).
+
+Definition ssEnsSumES (J G : Game) :=
+      (fun x => (match x with |inl a => J.(ES).(B) a |inr b => G.(ES).(B) b end)).
+
+
+Definition ordSumES (J G : Game) :=
+      (
+        fun x y => (match (x,y) with
+                   |(inl a, inl b) => J.(ES).(ord) a b
+                   |(inr a, inr b) => G.(ES).(ord) a b
+                   | _ => False
+                 end
+                )
+      ).
+
+Definition conflictSumES (J G : Game) :=
+      (
+        fun x y => (match (x,y) with
+                   |(inl a, inl b) => J.(ES).(conflict) a b
+                   |(inr a, inr b) => G.(ES).(conflict) a b
+                   | _ => False
+                 end
+                )
+      ).
+
+
+
+
+(**
+* Jeu tenseur
+ *)
+Program Definition ES_tenseur :
+  forall (J G :Game), EventStructure:=
+  fun J G =>
+    @Build_EventStructure
+      (sumES J G)
+      (ssEnsSumES J G)
+      (ordSumES J G)
+      (conflictSumES J G)
+      _
+      _
+      _
+      _
+      _.
+
+Next Obligation.
+  split.
+    intro. intros.
+    induction e.
+      unfold ordSumES.
+      pose proof J.(ES).(ord_ordonned).
+      destruct H0.
+      apply (H0 a).
+      unfold ssEnsSumES in H.
+      apply H.
+
+      unfold ordSumES.
+      pose proof G.(ES).(ord_ordonned).
+      destruct H0.
+      apply (H0 b).
+      unfold ssEnsSumES in H.
+      apply H.
+  split.
+    intro.
+    induction e.
+
+      intro.
+      induction f.
+        intros.
+        f_equal.
+        unfold ordSumES in H1.
+        unfold ordSumES in H2.
+        pose proof J.(ES).(ord_ordonned).
+          destruct H3.
+          destruct H4.
+          apply (H4 a a0).
+
+          unfold ssEnsSumES in H.
+          apply H.
+          unfold ssEnsSumES in H0.
+          apply H0.
+          apply H1. apply H2.
+
+        intros.
+        inversion H1.
+
+      induction f.
+
+        intros.
+        inversion H1.
+
+        intros.
+        f_equal.
+        unfold ordSumES in H1.
+        unfold ordSumES in H2.
+        pose proof G.(ES).(ord_ordonned).
+          destruct H3.
+          destruct H4.
+          apply (H4 b b0).
+
+          unfold ssEnsSumES in H.
+          apply H.
+          unfold ssEnsSumES in H0.
+          apply H0.
+          apply H1.
+          apply H2.
+
+    pose proof J.(ES).(ord_ordonned).
+    pose proof G.(ES).(ord_ordonned).
+
+    destruct H. destruct H1. destruct H0. destruct H3.
+    intro.
+    induction e.
+      intro.
+      induction f.
+        intro.
+        induction g.
+          intros.
+          unfold ordSumES.
+          unfold ordSumES in H8.
+          unfold ordSumES in H9.
+
+          apply (H2 a a0 a1).
+          unfold ssEnsSumES in H5. apply H5.
+          unfold ssEnsSumES in H6. apply H6.
+          unfold ssEnsSumES in H7. apply H7.
+          apply H8. apply H9.
+
+          intros.
+          unfold ordSumES.
+          inversion H9.
+
+      intro.
+      induction g.
+        intros.
+        inversion H8.
+
+        intros.
+        inversion H8.
+
+    intro.
+    induction f.
+      intro.
+      induction g.
+
+        intros.
+        inversion H8.
+
+        intros.
+        inversion H8.
+
+      intro.
+      induction g.
+
+        intros.
+        inversion H9.
+
+        intros.
+        unfold ordSumES.
+        unfold ordSumES in H8.
+        unfold ordSumES in H9.
+
+        apply (H4 b b0 b1).
+        unfold ssEnsSumES in H5. apply H5.
+        unfold ssEnsSumES in H6. apply H6.
+        unfold ssEnsSumES in H7. apply H7.
+        apply H8. apply H9.
+Qed.
+
+Next Obligation.
+  induction e.
+    intro.
+    unfold conflictSumES in H0.
+    pose proof J.(ES).(confl_irrefl).
+    apply (H1 a).
+    unfold ssEnsSumES in H. apply H. apply H0.
+
+    intro.
+    unfold conflictSumES in H0.
+    pose proof G.(ES).(confl_irrefl).
+    apply (H1 b).
+    unfold ssEnsSumES in H. apply H. apply H0.
+Qed.
+
+Next Obligation.
+  induction x.
+    induction y.
+      unfold conflictSumES.
+      apply J.(ES).(confl_sym).
+      unfold ssEnsSumES in H. apply H.
+      unfold ssEnsSumES in H0. apply H0.
+
+      unfold conflictSumES.
+      split. trivial. trivial.
+
+    induction y.
+      unfold conflictSumES.
+      split. trivial. trivial.
+
+      unfold conflictSumES.
+      apply G.(ES).(confl_sym).
+      unfold ssEnsSumES in H. apply H.
+      unfold ssEnsSumES in H0. apply H0.
+Qed.
+
+Definition extension1 (A B : Set) (f : A -> nat) : (sum A B)->nat.
+  exact (fun x => match x with |inl(a) => f a |inr(b) => 0 end).
+Defined.
+
+Definition extension2 (A B : Set) (f : B -> nat) : (sum A B)->nat.
+  exact (fun x => match x with |inl(a) => 0  |inr(b) => f b end).
+Defined.
+
+Next Obligation.
+  pose proof J.(ES).(finiteness).
+  pose proof G.(ES).(finiteness).
+
+  induction a.
+    unfold ssEnsSumES in H.
+    destruct ((H0 a) H).
+    destruct H2.
+    exists (extension1 J.(ES).(A) G.(ES).(A) x).
+
+    split.
+      intro.
+      induction a0.
+        intro.
+        induction a'.
+          intros.
+          f_equal.
+          apply (H2 a0 a1).
+          split.
+          split.
+          apply H4.
+          apply H4.
+          apply H4.
+          apply H5.
+
+          intros.
+          inversion H4.
+          inversion H7.
+          inversion H9.
+
+        intro.
+        induction a'.
+          intros.
+          inversion H4.
+          inversion H6.
+          inversion H9.
+
+        intros.
+        inversion H4.
+        inversion H7.
+        inversion H9.
+
+      destruct H3.
+      exists x0.
+      intro.
+      induction a0.
+      intros.
+      simpl.
+      apply (H3 a0).
+      split.
+        apply H4.
+        apply H4.
+
+      intros.
+      inversion H4.
+      inversion H6.
+
+    unfold ssEnsSumES in H.
+    destruct ((H1 b) H).
+    destruct H2.
+    exists (extension2 J.(ES).(A) G.(ES).(A) x).
+
+    split.
+      intro.
+      induction a.
+        intro.
+        induction a'.
+          intros.
+          inversion H4.
+          inversion H6.
+          inversion H9.
+
+          intros.
+          inversion H4.
+          inversion H6.
+          inversion H9.
+
+        intro.
+        induction a'.
+          intros.
+          inversion H4.
+          inversion H7.
+          inversion H9.
+
+          intros.
+          f_equal.
+          apply (H2 b0 b1).
+          split.
+          split.
+          apply H4.
+          apply H4.
+          apply H4.
+          apply H5.
+
+      destruct H3.
+      exists x0.
+      intro.
+      induction a.
+        intros.
+        simpl.
+        inversion H4.
+        inversion H6.
+
+        intros.
+        apply (H3 b0).
+        split.
+          apply H4.
+          apply H4.
+Qed.
+
+Next Obligation.
