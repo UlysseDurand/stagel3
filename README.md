@@ -5,6 +5,40 @@ Avec Pierre Clairambault et Etienne Miquey entre le LIS et l'I2M.
 
 # Contenu
 
+## Dossier codecoq
+
+Ici se trouve le code coq du stage.
+Il se divise en plusieurs fichiers :
+
+- theories/utiles.v : Ce fichier contient des définitions et théorèmes utiles par exemple pour définir
+  - les ensembles finis
+  - les relations d'ordre
+  - les fonctions bornées
+  - les fonctions injectives 
+
+- theories/jeu.v : Ce fichier contient toutes les définitions pour définir les jeux, c'est à dire
+  - les structures d'événements
+  - les configurations
+  - les justifications
+  - les jeux.
+  
+- theories/residu.v : Ce fichier contient ce qu'il faut pour définir un résidu, c'est à dire
+  - la définition d'un jeu résiduel
+  - la preuve qu'un jeu résiduel est un jeu
+  
+- theories/strategy.v : Ce fichier contient ce qu'il faut pour définir les stratégies, c'est à dire
+  - les OPlay
+  - les préfixes de parties
+  - la relation de cohérence
+  - les stratégies
+  
+- theories/diagpol.v : Ce fichier contient ce qui concerne les interpretations et le diagramme de polarité, c'est à dire
+  - les OOO_Play
+  - les préfixes sur les interprétations
+  - les restrictions d'interprétation
+  
+- tests/test.v : Ce fichier permet de tester les définitions et théorèmes précédents sur un jeu test concret.
+  
 ## Dossier rapport
 
 Dans le dossier rapport, il y a tout le contenu du rapport qui a les contraintes suivantes :
@@ -44,28 +78,3 @@ Consignes obligatoires supplémentaires pour le rapport :
 ## Dossier presentation
 
 Aucune consigne pour le moment
-
-
-## Dossier codecoq
-
-Ici se trouve le code coq du stage.
-Il se divise en plusieurs fichiers :
-
-- theories/utiles.v : Ce fichier contient des définitions et théorèmes utiles par exemple pour définir
-  - les ensembles finis
-  - les relations d'ordre
-  - les fonctions bornées
-  - les fonctions injectives 
-
-- theories/jeu.v : Ce fichier contient toutes les définitions pour définir les jeux, c'est à dire
-  - les structures d'événements
-  - les configurations
-  - les justifications
-  - les jeux.
-  
-- theories/residu.v : Ce fichier contient ce qu'il faut pour définir un résidu, c'est à dire
-  - la définition d'un jeu résiduel
-  - la preuve qu'un jeu résiduel est un jeu
-  
-- tests/test.v : Ce fichier permet de tester les définitions et théorèmes précédents sur un jeu test concret.
-  

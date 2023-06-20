@@ -10,7 +10,7 @@
 2'\\\]' -> '\right]'
 3'^# (.*?)~n~' -> '\section{%1}~n~'
 3'^## (.*?)~n~' -> '\subsection{%1}~n~'
-3'^### (.*?)~n~' -> '\subsubsection{%1}~n~
+3'^### (.*?)~n~' -> '\subsubsection{%1}~n~'
 3'^#\* (.*?)~n~' -> '\section*{%1}~n~'
 3'^##\* (.*?)~n~' -> '\subsection*{%1}~n~'
 3'^###\* (.*?)~n~' -> '\subsubsection*{%1}~n~
@@ -21,7 +21,7 @@
 3'^---t~n~' -> '\begin{answer} ~n~'
 3'^---tf\*~n~' -> '\end{myindentpar}~n~'
 3'^---tf~n~' -> '\end{answer}~n~'
-3'^---h (.*?)~n~(.*?)~n~---h~n~' -> '\begin{samepage}\textbf{\textit{\underline{ %1 }}} \begin{answer}~n~%2~n~\end{answer}\end{samepage}~n~'
+3'^---h (.*?)~n~(.*?)~n~---h~n~' -> '\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ %1 }}} \begin{answer}~n~%2~n~\end{answer}\end{minipage}~n~'
 3'^---s~n~(.*?)~n~---s' -> '\begin{split}~n~%1~n~\end{split}'
 3'^---ml~n~(.*?)~n~---ml' -> '\begin{align*}~n~%1~n~\end{align*}'
 3'^---mln(.*?)~n~(.*?)~n~---mln' -> '\begin{alignat*}{%1}~n~%2~n~\end{alignat*}'

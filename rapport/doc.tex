@@ -94,48 +94,65 @@ ensembles mais pour toutes les catégories cartésiennes fermées.
 La question est alors de savoir si on peut construire une telle sémantique vers
 une catégorie des jeux et stratégies, que l'on va alors construire.
 
-\section{Définitions}
+\newpage
+\section{Définitions usuelles de sémantique de jeu}
 
-Tentons de définir cette catégorie des jeux.
+Nous allons définir petit à petit les jeux et stratégies pour faire
+cette catégorie des jeux et stratégies.
 
-\begin{samepage}\textbf{\textit{\underline{ Structure d'événement (S.E.) : }}} \begin{answer}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Structure d'événement (S.E.) : }}} \begin{answer}
 
 Il s'agit de $E = (|E|, \leq_E, \#_E)$ où
 \begin{itemize}
-\item $\leq_E$ est un ordre partiel sur E
-\item $\#_E$ est une relation binaire symétrique irréflexive :
+\item $\leq_E$ (la causalité) est un ordre partiel sur $E$
+\item $\#_E$ (le conflit) est une relation binaire symétrique irréflexive :
 \begin{itemize}
 \item à causes finies :
+
 $\forall e \in |E|, \{e' \in |E| \mid e' \leq_E e\}$ est fini
 
 \item qui vérifie l'axiome de vendetta :
+
 $\forall e_1 \#_E e_2, (e_2 \leq_E e'_2 \implies e_1 \# e'_2)$
 \end{itemize}
 \end{itemize}
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Configuration : }}} \begin{answer}
+Intuitivement pour l'axiome de vendetta, si deux événements sont en conflit,
+alors tous les événements qu'ils causent sont eux aussi en conflit.
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Configuration : }}} \begin{answer}
 
 $x$ fini $\subset |E|$ est une configuration si
 \begin{itemize}
-\item x est fermé vers le bas
-($\forall e \in x, \forall e' \in |E|, e' \leq_E e \implies e' \in x$)
+\item x est fermé vers le bas :
+
+$\forall e \in x, \forall e' \in |E|, e' \leq_E e \implies e' \in x$
 
 \item x est sans conflit
-($\forall e, e' \in x, \neg (e \#_E e')$)
+
+$\forall e, e' \in x, \neg (e \#_E e')$
 \end{itemize}
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
+
 On note $\mathcal{C}(E)$ l'ensemble des configurations de $E$.
 
-\begin{samepage}\textbf{\textit{\underline{ Justification : }}} \begin{answer}
-$x \in \mathcal{C}(E)$ justifie $e \in |E|$, noté $x \vdash e$ si $x \uplus e \in \mathcal{C}(E)$
-\end{answer}\end{samepage}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Justification : }}} \begin{answer}
+$x \in \mathcal{C}(E)$ justifie $e \in |E|$, noté $x \vdash e$ si
 
-\begin{samepage}\textbf{\textit{\underline{ Jeu : }}} \begin{answer}
-Un jeu est $A$ une S.E munie de $\text{pol}_A : |A| \rightarrow \{-, +\}$
-\end{answer}\end{samepage}
+$x \uplus \{e\} \in \mathcal{C}(E)$
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Partie : }}} \begin{answer}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Jeu : }}} \begin{answer}
+Un jeu est $A$ une S.E munie de
+
+$\text{pol}_A : |A| \rightarrow \{-, +\}$
+\end{answer}\end{minipage}
+
+On aura $\text{pol}_A(e) = -$ si $e$ est un coup opposant et $+$ si
+c'est un coup joueur.
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Partie : }}} \begin{answer}
 Une partie sur $A$ est un mot $s = s_1 \dots s_n \in |A|^*$ qui est :
 \begin{itemize}
 \item valide :
@@ -150,12 +167,13 @@ $\forall 1 \leq i \leq n-1, \text{pol}_A(s_i) = - \text{pol}_A(s_{i+1})$
 \item négative :
 $s \neq \epsilon \implies \text{pol}_A(s_1) = -$
 \end{itemize}
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
+
 On note $\mathcal{P}(A)$ l'ensemble des parties sur $A$.
 
-\subsection{Opérations sur les jeux}
+\subsubsection{Opérations sur les jeux}
 
-\begin{samepage}\textbf{\textit{\underline{ Tenseur ou jeux parallèles : }}} \begin{answer}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Tenseur ou jeux parallèles : }}} \begin{answer}
 On définit le jeu $A_1 \otimes A_2$
 \begin{itemize}
 \item $|A_1 \otimes A_2| = \{1\} \times |A_1| \cup \{2\} \times |A_2|$
@@ -163,9 +181,12 @@ On définit le jeu $A_1 \otimes A_2$
 \item $(i,a) \#_{A_1 \otimes A_2} (j,a') \iff i = j$ et $a \#_{A_i} a'$
 \item $\text{pol}_{A_1 \otimes A_2}(i,a) = pol_{A_i} (a)$
 \end{itemize}
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Jeu dual : }}} \begin{answer}
+Alors un jeu $A\otimes B$ correspond à un jeu où les joueurs jouent
+à chaque tour soit sur le jeu $A$ soit sur le jeu $B$.
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Jeu dual : }}} \begin{answer}
 On définit le jeu ${}^\bot A$
 \begin{itemize}
 \item $|{}^\bot A| = |A|$
@@ -173,48 +194,67 @@ On définit le jeu ${}^\bot A$
 \item $\#_{{}^\bot A} = \#_A$
 \item $\text{pol}_{{}^\bot A} = - \text{pol}_A$
 \end{itemize}
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ $A \vdash B$ : }}} \begin{answer}
+Le jeu ${}^\bot A$ correspond au jeu $A$ où on échange la place des joueurs.
+L'opposant devient le joueur et le joueur devient l'opposant.
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Le jeu $A \vdash B$ : }}} \begin{answer}
 $A \vdash B = {}^\bot A \otimes B$
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\subsection{Stratégies sur les jeux}
+On verra que cette définition est surtout utile pour définir des stratégies
+avec leur composition.
 
-\begin{samepage}\textbf{\textit{\underline{ Stratégie : }}} \begin{answer}
+\subsubsection{Stratégies sur les jeux}
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Stratégie : }}} \begin{answer}
 Une stratégie sur le jeu $A$ est $\sigma \subset \mathcal{P}(A)$ qui est
 \begin{itemize}
 \item non vide :
+
 $\epsilon \in \sigma$
 
 \item clos par préfixe :
+
 $\forall e \in \sigma, \forall e', e' \sqsubseteq e \implies e' \in \sigma$
 
 \item déterministe :
-(Dans une partie quand c'est le tour du joueur +, il ne fait qu'un choix de
-coup)\\
+
+(Dans une partie quand c'est le tour du joueur +, son choix de prochain coup
+est unique, déterminé)
+
 $sa_1^+, sa_2^+ \in \sigma \implies a_1 = a_2$
 
 \item réceptive :
-(Maximale dans un certains sens)\\
+
+(Si la partie est maximale alors c'est à + de jouer.)
+
 $s \in \sigma$ et $sa^- \in \mathcal{P}(A) \implies sa^- \in \sigma$
 \end{itemize}
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Restriction de stratégie : }}} \begin{answer}
-Soit $s$ une stratégie sur $A_1 \otimes A_2$, alors $s\upharpoonright A_1$ est la
-restriction de $s$ à $A_1$.
+Définissons les restrictions sur les parties d'un jeu $A_1 \otimes A_2$.
 
-$s\upharpoonright A_1 = \{\Pi_{i \mid \exists b_i : a_i = (1, b_i)} a_i \mid a_1 \dots a_n \in s\}$
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Restrictions sur les parties }}} \begin{answer}
+Soit $a = a_1 a_2 \dots a_n$ une partie sur $A_1 \otimes A_2$,
+on note $a \upharpoonright A_k$ la partie $(a_i)_{i \in I}$ où
+$I = \{i / \exists b / a_i = (b,k)\}$
 
-De même,
 
-$s\upharpoonright A_2 = \{\Pi_{i \mid \exists b_i : a_i = (2, b_i)} a_i \mid a_1 \dots a_n \in s\}$
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\subsection{Catégories :}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Restriction de stratégie : }}} \begin{answer}
+Soit $s$ une stratégie sur $A_1 \otimes A_2$, alors $s\upharpoonright A_k$ est la
+restriction de $\sigma$ à $A_k$.
 
-\begin{samepage}\textbf{\textit{\underline{ Catégorie : }}} \begin{answer}
+$\sigma \upharpoonright A_k = \{a\upharpoonright A_k \mid a \in \sigma\}$
+
+\end{answer}\end{minipage}
+
+\subsubsection{Catégories :}
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Catégorie : }}} \begin{answer}
 Une catégorie $\mathcal{C}$ c'est
 \begin{itemize}
 \item Une classe d'objets $|\mathcal{C}|$
@@ -228,8 +268,7 @@ $\text{id}_A \in \mathcal{C}(A,A)$
 \item Une loi binaire sur les morphismes
 $f \in \mathcal{C}(A,B)$, si $g \in \mathcal{C}(B,C)$, alors
 $g \circ f \in \mathcal{C}(A,C)$
-\end{itemize}
-Tel que
+telle que
 \begin{itemize}
 \item $\circ$ est associative:
 $h \circ (g \circ f) = (h \circ g) \circ f$
@@ -237,10 +276,11 @@ $h \circ (g \circ f) = (h \circ g) \circ f$
 \item Pour tout A, $\text{id}_A$ est neutre pour $\circ$ :
 $f \circ \text{id}_A = \text{id}_A \circ f = f$
 \end{itemize}
+\end{itemize}
 
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\section{La catégorie des jeux et des stratégies}
+\subsection{La catégorie des jeux et des stratégies}
 
 Nous allons tenter de construire la catégorie des jeux et stratégies
 
@@ -255,25 +295,23 @@ Après avoir défini $\text{id}_A$ et $\circ$, il nous restera à prouver
 que avec ces définitions, $\circ$ est associative et $\text{id}_A$ est neutre
 pour $\circ$.
 
-\subsection{Copycat}
+\subsubsection{Copycat}
 
 Copycat de $A$ est une stratégie sur $A \vdash A = {}^\bot A \otimes A$
 
-\begin{samepage}\textbf{\textit{\underline{ Definition : }}} \begin{answer}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Definition : }}} \begin{answer}
 Copycat de $A$ c'est
-\begin{align*}
-&cc_A\\
-&=\{s \in \mathcal{P}(A_1 \vdash A_2) \mid \forall t=t_1 \dots t_n \sqsubseteq s/ pol_A(t_n) = + \implies t \upharpoonright A_1 = t \upharpoonright A_2\}
-\end{align*}
-\end{answer}\end{samepage}
+
+$cc_A=\{s \in \mathcal{P}(A_1 \vdash A_2) \mid \forall t \sqsubseteq^+ s, t \upharpoonright A_1 = t \upharpoonright A_2\}$
+\end{answer}\end{minipage}
 
 
-\subsection{Composition de stratégies}
+\subsubsection{Composition de stratégies}
 
 Soit $\sigma$ stratégie sur $A\vdash B$ et $\tau$ stratégie sur $B \vdash C$,
 construisons $\tau \circ \sigma$ stratégie sur $A \vdash C$
 
-\begin{samepage}\textbf{\textit{\underline{ Définition : interaction }}} \begin{answer}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Définition : interaction }}} \begin{answer}
 
 Une interaction sur $A, B, C$ est $u \in (A \otimes B \otimes C)^*$ tel que
 \begin{itemize}
@@ -281,98 +319,193 @@ Une interaction sur $A, B, C$ est $u \in (A \otimes B \otimes C)^*$ tel que
 \item $u \upharpoonright (B, C) \in \mathcal{P}(B \vdash C)$
 \item $u \upharpoonright (A, C) \in \mathcal{P}(A \vdash C)$
 \end{itemize}
-\end{answer}\end{samepage}
-On note $I(A,B,C)$ l'ensemble des intéractions sur $A,B,C$.
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Définition : stratégies parallèles }}} \begin{answer}
+On note $I(A,B,C)$ l'ensemble des interactions sur $A,B,C$.
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Définition : stratégies parallèles }}} \begin{answer}
 $\sigma || \tau = \{u \in I(A,B,C) \mid u \upharpoonright A,B \in \sigma \text{ et }u \upharpoonright B,C \in \tau\}$
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Définition : Composition de stratégies }}} \begin{answer}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Définition : Composition de stratégies }}} \begin{answer}
 $\sigma \circ \tau = \{u \upharpoonright A,C \mid u \in \sigma || \tau\}$
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Diagramme de polarité }}} \begin{answer}
-On partitionne $\mathcal{P}(A \vdash B)$ par la parité des longueurs de
-partie.
-Ainsi on a un ensemble $O$ des parties où c'est au tour de l'opposant
-de jouer et $P$ celui des parties où c'est au tour du joueur de jouer.
-On obtient $\mathcal{P}(A \vdash B) / \sim$
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Diagramme de polarité }}} \begin{answer}
 
-Soit un jeu $A$, on peut construire l'automate $\mathcal{A}_A$ où les états
-sont les parties et les transitions sont les coups munis de leur polarisation
-qui par justification mênent à une autre partie.
-On peut aussi partitionner cet automate par $\sim$ pour avoir $\mathcal{A}_A/\sim$
-
-Alors on construit le diagramme des polarités qui est l'automate
-
-$(\mathcal{A}_{A \vdash B}/\sim) \times (\mathcal{A}_{B \vdash C}/\sim) \times (\mathcal{A}_{A \vdash C}/\sim)$
-
-L'état initial étant $OOO$.
-
-Par exemple depuis l'état $OOO$ on ne peut jouer un coup $b^+$ où $b \in |B|$
-car ce serait un coup du joueur pour $A \vdash B$ alors que c'est le tour de
-l'opposant.
-De même on ne peut jouer un coup $b^-$ à cause de $B \vdash C$.
+À une interaction $u \in I(A,B,C)$, on peut associer un état
+$e_1 e_2 e_3 \in \{O,P\}^3$ tel que
+\begin{itemize}
+\item $e_1 = O$ si dans la partie $A\vdash B, u\upharpoonright A,B $ est une partie où c'est au tour de l'opposant
+\item $e_1 = O$ si dans la partie $B\vdash C, u\upharpoonright B,C $ est une partie où c'est au tour de l'opposant
+\item $e_1 = O$ si dans la partie $A\vdash C, u\upharpoonright A,C $ est une partie où c'est au tour de l'opposant
+\end{itemize}
 
 On aboutit alors au diagramme suivant :
 \tikzfig{diagpol}
 
+où on passe d'un état à un autre en ajoutant un événement à notre interaction,
+$a^+$ désigne n'importe quel événement de $A$ de polarité $+$.
 
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
 
-\begin{samepage}\textbf{\textit{\underline{ Proposition : }}} \begin{answer}
+Ce diagramme de polarité est ce qui va nous permette de faire des preuves sur les
+compositions de stratégies (la composition reste une stratégie, est associative,
+et a Copycat pour neutre).
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Proposition : }}} \begin{answer}
 $\sigma \circ \tau$ ainsi défini est bien une stratégie sur $A \vdash C$
-\end{answer}\end{samepage}
+\end{answer}\end{minipage}
+\newpage
+\section{Définitions équivalentes manipulables en Coq}
 
-\begin{samepage}\textbf{\textit{\underline{ Preuve : }}} \begin{answer}
+Pour faire du Coq nous allons préférer des définitions inductives aux
+définitions ensemblistes.
 
-\begin{samepage}\textbf{\textit{\underline{ Lemme d'unicité du témoins : }}} \begin{answer}
-Si $s \in \sigma \circ \tau$ est de longueur paire,
-$\exists ! u \in \sigma||\tau $ tel que $ s = u \upharpoonright A,C$
+\subsection{Définition d'une partie}
 
-on l'appelle le témoins de s.
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Definition du jeu résiduel }}} \begin{answer}
+Soit $A$ un jeu, $a \in |A|$ minimal pour $\leq_A$, on définit
+$A_{\backslash a}$ le jeu résiduel de $A$ en $a$.
 
-\end{answer}\end{samepage}
-
-\begin{samepage}\textbf{\textit{\underline{ Preuve du Lemme : }}} \begin{answer}
-\begin{samepage}\textbf{\textit{\underline{ Existence : }}} \begin{answer}
-Par définition de $\sigma \circ \tau$
-\end{answer}\end{samepage}
-\begin{samepage}\textbf{\textit{\underline{ Unicité : }}} \begin{answer}
-Soit $u,v \in \sigma || \tau$ tels que
-$u \upharpoonright A,C = s$ et $v \upharpoonright A, C = s$.
-
-Soit $\omega$ leur plus long préfixe commun
-\begin{alignat*}{3}
-&u = &\omega &&l_1 &u'\\
-&v = &\omega &&l_2 &v'
-\end{alignat*}
 \begin{itemize}
-\item Si $l_1$ et  $l_2 \in B$.
+\item $|A{\backslash a}| = |A| \backslash \{x \in |A| \mid x \#_A a \text{ ou } x=a\}$
+\item $\leq_{A{\backslash a}} = \leq_A|_{|A{\backslash a}|^2}$
 
-Comme $u$ et $v$ sont alternants pour $\text{pol}_B$,
-on a $\text{pol}_B(b_1) = \text{pol}_B(b_2)$
+(même relation mais restreinte à son nouvel ensemble de définition)
 
-Supposons que ça vaut $+$.
+\item $\#_{A{\backslash a}} = \#_A|_{|A{\backslash a}|^2}$
 
-Par déterminisme de $\tau$, comme
-$(w\upharpoonright B,C)b_1^+ \in \tau$ et
-$(w\upharpoonright B,C)b_2^+ \in \tau$,
-on a $b_1$ = $b_2$.
+(idem)
 
-\item Sinon
+\item $\text{pol}_{A{\backslash a}} = \text{pol}_A|_{|A{\backslash a}|}$
 
-Nous verrons par la suite que c'est impossible étant donné
-le diagramme de polarité
+
+(idem)
+
 
 \end{itemize}
 
+\end{answer}\end{minipage}
+
+Un jeu résiduel est un jeu, c'est montré en Coq.
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Definition Coq : Les parties }}} \begin{answer}
+Une partie est un OPlay, défini comme suit :
+
+$\frac{}{\epsilon : \text{OPlay}_G}\epsilon_0$
+
+$\frac{\text{min}(a^-,G) \qquad s : \text{PPlay}_{G\backslash a}}
+{a^-s : \text{OPlay}_G}\text{OPlay}_i$
+
+$\frac{\text{min}(A^+,G) \qquad s : \text{OPlay}_{G\backslash a}}
+{A^+s : \text{PPlay}_G}\text{PPlay}_i$
+\end{answer}\end{minipage}
+
+Notons alors que les parties ainsi définies finissent forcément par un coup
+opposant, alors elles sont récéptives.
 
 
-\end{answer}\end{samepage}
-\end{answer}\end{samepage}
+On définit alors l'ordre préfixe sur les parties
 
-\end{answer}\end{samepage}
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Définition Coq : Ordre préfixe sur les parties. }}} \begin{answer}
+$\frac{s : \text{OPlay}}{\epsilon \sqsubseteq^- s} \sqsubseteq^-_\epsilon$
+
+$\frac{s : \text{PPlay} \qquad s' : \text{PPlay} \qquad s \sqsubseteq^+ s'}
+{a^-s \sqsubseteq^- a^-s'} \sqsubset^-_i$
+
+$\frac{s : \text{OPlay} \qquad s' : \text{OPlay} \qquad s \sqsubseteq^- s'}
+{a^+s \sqsubseteq^+ a^+s'} \sqsubset^+_i$
+\end{answer}\end{minipage}
+
+
+Maintenant passons aux stratégies, nous allons construire la relation de
+cohérence sur les parties.
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Définition Coq : Cohérence entre deux parties }}} \begin{answer}
+
+$\frac{s:\text{Oplay}}{\text{Coh}^-(\epsilon,s)} \text{Coh}^-_{\epsilon,l}$
+
+$\frac{s:\text{OPlay}}{\text{Coh}^-(s,\epsilon)} \text{Coh}^-_{\epsilon,r}$
+
+$\frac{a^- \neq a'^- \qquad s:\text{PPlay} \qquad s':\text{PPlay}}
+{\text{Coh}^-(a^-s, a'^- s')} \text{Coh}^-_{\neq i}$
+
+$\frac{s : \text{OPlay} \qquad s':\text{OPlay} \qquad \text{Coh}^-(s,s')}
+{\text{Coh}^+(a^+s, a^+s')} \text{Coh}^+_i$
+
+$\frac{s : \text{PPlay} \qquad s':\text{PPlay} \qquad \text{Coh}^+(s,s')}
+{\text{Coh}^-(a^-s, a^-s')} \text{Coh}^-_i$
+
+\end{answer}\end{minipage}
+
+\vspace{0.4cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{ Preuve que cohérente et clos par préfixe équivaut à déterministe et clos par préfixe. }}} \begin{answer}
+On dit que $\sigma \subset \mathcal{P}(A)$ est cohérente si
+$\forall s, s' \in \sigma$ de longueur paire, $ Coh^-(s,s')$
+
+Alors si $\sigma$ est cohérente
+
+Montrons $\forall s, sa_1^+ \in \sigma$ et $s a^+ \in \sigma \implies a_1 = a_2$
+par induction sur $|s|$, (IH) est notre hypothèse d'induction.
+
+\begin{itemize}
+\item $|s| = 1$
+
+Alors comme $\sigma$ cohérente, on a $\text{Coh}^-(s_1^-a_1^+,s_1^-a_2^+)$
+Par induction structurelle sur cette relation,
+\begin{itemize}
+\item via $\text{Coh}^-_{\neq i}$, on aurait $s_1 \neq s_1$, impossible.
+\item via $\text{Coh}^-_{\epsilon,l}$, on aurait $s_1a_1^+ = \epsilon$, impossible.
+\item via $\text{Coh}^-_{\epsilon,r}$, on aurait $s_1a_2^+ = \epsilon$, impossible.
+\item on a alors forcément via $\text{Coh}^-_i$, $\text{Coh}^+(a_1^+,a_2^+)$
+Et de même, par induction structurelle, on $a_1 = a_2$.
+
+\end{itemize}
+\item $|s| > 1$
+
+Alors comme $\sigma$ cohérente, on a $\text{Coh}^-(s_1^-s_2^+s'a_1+,s_1^-s_2^+s'a_2^+)$
+
+Comme pour le cas $|s|=1$, on fait une induction structurelle sur la relation,
+le seul cas possible étant $\text{Coh}^+(s_2^+s'a_1^+, s_2^+s'a_2^+)$,
+en faisant aussi une induciton structurelle sur $\text{Coh}^+$,
+on a $\text{Coh}^-(s'a_1^+, s'a_2^+)$.
+
+En appliquant l'hypothèse (IH), sur $\text{Coh}^-(s'a_1^+,s'a_2^+)$, on
+obtient $a_1 = a_2$
+
+\end{itemize}
+
+Montrons maintenant la réciproque
+
+Si $\sigma$ est déterministe et clos par préfixe
+
+On montre $\forall s, s' \in \sigma, \text{Coh}^-_G(s,s')$ par induction sur
+$|s|+|s'|$.
+
+Si $s=\epsilon$ ou $s'=\epsilon$ c'est bon grâce à
+$\text{Coh}^-_{\epsilon, l}$ et $\text{Coh}^-_{\epsilon, r}$, sinon
+$s = s_1 s_2 s_\geq$ et $s' = s'_1 s'_2 s'_\geq$
+\begin{itemize}
+\item Si $s_1 = s'_1$
+
+Comme $\sigma$ est clos par préfixe, on a $s_1 s_2, s'_1 s'_2 \in \sigma$.
+Par déterminisme, on a alors $s_2 = s'_2$.
+
+Comme on a $s_\geq, s'_\geq \in \sigma |_{G\backslash s_1,s_2}$, par IH,
+on a $\text{Coh}^-(s_\geq, s'_\geq)$
+
+Donc on a $\text{Coh}^+(s_2 s_\geq, s'_2 s'_\geq)$ et finalement,
+$\text{Coh}^-(s_1 s_2 s_\geq, s'_1 s'_2 s'_\geq)$ grâce à
+$\text{Coh}_i^+$ et $\text{Coh}_i^-$.
+
+
+\item Si $s_1 \neq s'_1$
+
+On a directement par $\text{Coh}_{\neq i}^-, \text{Coh}^-(s_1 s_2 s_\geq, s'_1 s'_2 s_\geq)$.
+
+\end{itemize}
+\end{answer}\end{minipage}
+
+On a maintenant de quoi définir les stratégies en Coq.
 \printbibliography
 \end{document}

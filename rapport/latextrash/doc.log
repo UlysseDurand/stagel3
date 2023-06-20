@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.3.23)  9 JUN 2023 13:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.3.23)  19 JUN 2023 16:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1096,224 +1096,157 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2023basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 115--116
-[] []
+{/usr/local/texlive/2023basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+]
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 119--119
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 136--136
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 127--129
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 144--144
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 132--133
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 150--150
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
-
- []
-
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 136--137
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
-
- []
-
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 153--155
-[] []
- []
-
-[2]
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 166--167
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
-
- []
-
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 176--177
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
-
- []
-
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 180--181
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
-
- []
-
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 202--203
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 170--170
+[] [] 
  []
 
 [3]
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 213--214
-[] []
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 174.
+
+
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 184--184
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 197--197
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 241--242
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 204--204
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--242
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 235--235
+[] [] 
  []
 
 [4]
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 268--269
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 245--245
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--269
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 253--253
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 284--286
-[] []
- []
-
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 289--290
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 289--290
-
- []
-
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 293--294
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
-
- []
-
-(../figures/diagpol.tikz)
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 322--323
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--323
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 281--281
+[] [] 
  []
 
 [5]
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 326--327
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 306--306
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--327
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 322--322
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 336--337
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 328--328
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--337
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 332--332
+[] [] 
+ []
 
+(../figures/diagpol.tikz)
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 350--350
+[] [] 
+ []
+
+[6]
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 358--358
+[] [] 
+ []
+
+[7]
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 389--389
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 341--342
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 403--403
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 373--374
-[] []
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 419--419
+[] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--374
+Overfull \hbox (2.4728pt too wide) in paragraph at lines 422--424
+[]\OT1/cmr/m/n/10 Maintenant pas-sons aux strat^^Segies, nous al-lons con-stru-
+ire la re-la-tion de coh^^Serence
+ []
 
+[8]
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 440--440
+[] [] 
  []
 
 
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 374--375
-[] []
+Overfull \hbox (87.47067pt too wide) in paragraph at lines 442--442
+[]$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 374--375
-
+Overfull \hbox (12.22223pt too wide) in paragraph at lines 507--507
+[] [] 
  []
 
+[9]
 
-LaTeX Warning: Empty bibliography on input line 377.
+LaTeX Warning: Empty bibliography on input line 510.
 
-
-Overfull \hbox (12.22223pt too wide) in paragraph at lines 376--378
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 376--378
-
- []
-
-[6] [7] (./doc.aux)
+[10] (./doc.aux)
 Package rerunfilecheck Info: File `doc.out' has not changed.
-(rerunfilecheck)             Checksum: 68EC891DDAFC835B9BE95B0F482866D5;1220.
+(rerunfilecheck)             Checksum: CDA6853EC63242C98757CF79B877B052;1861.
 Package logreq Info: Writing requests to 'doc.run.xml'.
 \openout1 = `doc.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31660 strings out of 477476
- 622895 string characters out of 5824244
- 1864388 words of memory out of 5000000
- 51410 multiletter control sequences out of 15000+600000
+ 31667 strings out of 477476
+ 622955 string characters out of 5824244
+ 1866388 words of memory out of 5000000
+ 51412 multiletter control sequences out of 15000+600000
  520844 words of font info for 65 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 117i,14n,118p,676b,972s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,12n,118p,676b,990s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/ulyssedurand/Library/texlive/2023basic/texmf-var/fonts/pk/ljfour/jkn
 appen/ec/tcrm1000.600pk></usr/local/texlive/2023basic/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type
@@ -1332,10 +1265,10 @@ xlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local
 /texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/lo
 cal/texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 >
-Output written on doc.pdf (7 pages, 184355 bytes).
+Output written on doc.pdf (10 pages, 198369 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
- 16 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
