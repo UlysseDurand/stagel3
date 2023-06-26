@@ -10,9 +10,6 @@ portent. Ainsi au lieu de marquer forall e:B, on marque
 forall e:A, B e -> .
  *)
 
-
-
-
 Class EventStructure := {
     A: Set;
     B: A->Prop;
@@ -99,6 +96,10 @@ Class Game := {
     polarity : A -> player
   }.
 
+(**
+* Définition d'un jeu tenseur
+ *)
+
 Definition sumES (J G : Game) :=
   sum J.(ES).(A) G.(ES).(A).
 
@@ -135,11 +136,15 @@ Ltac myinv :=
   match goal with
   | [ H:ordSumES _ _ (inl _) (inr _) |- _] => inversion H
   | [ H:ordSumES _ _ (inr _) (inl _) |- _] => inversion H
+  | [ H:conflictSumES _ _ (inl _) (inr _) |- _] => inversion H
+  | [ H:conflictSumES _ _ (inr _) (inl _) |- _] => inversion H
   end.
 
-(**
-* Jeu tenseur
- *)
+Ltac mysplit :=
+  match goal with
+  | [ H: _ /\ _ |- _] => destruct H
+  end.
+
 Program Definition ES_tenseur :
   forall (J G :Game), EventStructure:=
   fun J G =>
@@ -148,11 +153,7 @@ Program Definition ES_tenseur :
       (ssEnsSumES J G)
       (ordSumES J G)
       (conflictSumES J G)
-      _
-      _
-      _
-      _
-      _.
+      _ _ _ _ _.
 
 Next Obligation.
   repeat split.
@@ -168,157 +169,85 @@ Next Obligation.
     + apply Trans0 with a0;assumption.
 Qed.
 Next Obligation.
-  induction e.
-    intro.
-    unfold conflictSumES in H0.
-    pose proof J.(ES).(confl_irrefl).
-    apply (H1 a).
-    unfold ssEnsSumES in H. apply H. apply H0.
-
-    intro.
-    unfold conflictSumES in H0.
-    pose proof G.(ES).(confl_irrefl).
-    apply (H1 b).
-    unfold ssEnsSumES in H. apply H. apply H0.
+  destruct e.
+  - apply (J.(ES).(confl_irrefl) a); assumption.
+  - apply (G.(ES).(confl_irrefl) a); assumption.
 Qed.
 
 Next Obligation.
-  induction x.
-    induction y.
-      unfold conflictSumES.
-      apply J.(ES).(confl_sym).
-      unfold ssEnsSumES in H. apply H.
-      unfold ssEnsSumES in H0. apply H0.
-
-      unfold conflictSumES.
-      split. trivial. trivial.
-
-    induction y.
-      unfold conflictSumES.
-      split. trivial. trivial.
-
-      unfold conflictSumES.
-      apply G.(ES).(confl_sym).
-      unfold ssEnsSumES in H. apply H.
-      unfold ssEnsSumES in H0. apply H0.
+  destruct x,y.
+  - apply J.(ES).(confl_sym);assumption.
+  - split;trivial;trivial.
+  - split;trivial;trivial.
+  - apply G.(ES).(confl_sym);assumption.
 Qed.
 
-Definition extension1 (A B : Set) (f : A -> nat) : (sum A B)->nat.
-  exact (fun x => match x with |inl(a) => f a |inr(b) => 0 end).
-Defined.
-
-Definition extension2 (A B : Set) (f : B -> nat) : (sum A B)->nat.
-  exact (fun x => match x with |inl(a) => 0  |inr(b) => f b end).
+Definition extension (A B C: Set) (f1 : A -> C) (f2 : B -> C) : (sum A B)->C.
+  exact (fun x => match x with |inl(a) => f1 a |inr(b) => f2 b end).
 Defined.
 
 Next Obligation.
-  pose proof J.(ES).(finiteness).
-  pose proof G.(ES).(finiteness).
-
-  induction a.
-    unfold ssEnsSumES in H.
-    destruct ((H0 a) H).
-    destruct H2.
-    exists (extension1 J.(ES).(A) G.(ES).(A) x).
-
+  destruct a.
+  -
+    destruct ((J.(ES).(finiteness) a) H) as (f,(inj,bound)).
+    exists (extension J.(ES).(A) G.(ES).(A) nat f (fun x=>0)).
     split.
-      intro.
-      induction a0.
-        intro.
-        induction a'.
-          intros.
-          f_equal.
-          apply (H2 a0 a1).
-          split.
-          split.
-          apply H4.
-          apply H4.
-          apply H4.
-          apply H5.
-
-          intros.
-          inversion H4.
-          inversion H7.
-          inversion H9.
-
-        intro.
-        induction a'.
-          intros.
-          inversion H4.
-          inversion H6.
-          inversion H9.
-
-        intros.
-        inversion H4.
-        inversion H7.
-        inversion H9.
-
-      destruct H3.
-      exists x0.
-      intro.
-      induction a0.
-      intros.
-      simpl.
-      apply (H3 a0).
-      split.
-        apply H4.
-        apply H4.
-
-      intros.
-      inversion H4.
-      inversion H6.
-
-    unfold ssEnsSumES in H.
-    destruct ((H1 b) H).
-    destruct H2.
-    exists (extension2 J.(ES).(A) G.(ES).(A) x).
-
+    +
+      intros a0 a'.
+      destruct a0, a'.
+      * intros;f_equal;apply (inj a0 a1);assumption.
+      * intros;repeat mysplit;repeat myinv.
+      * intros;repeat mysplit;repeat myinv.
+      * intros;repeat mysplit;repeat myinv.
+    +
+      destruct bound as (n,n_bound_f).
+      exists n. intros a0 petita0. destruct a0.
+      * simpl; apply n_bound_f; apply petita0.
+      * mysplit; myinv.
+  -
+    destruct ((G.(ES).(finiteness) a) H) as (f,(inj,bound)).
+    exists (extension J.(ES).(A) G.(ES).(A) nat (fun x=>0) f).
     split.
-      intro.
-      induction a.
-        intro.
-        induction a'.
-          intros.
-          inversion H4.
-          inversion H6.
-          inversion H9.
-
-          intros.
-          inversion H4.
-          inversion H6.
-          inversion H9.
-
-        intro.
-        induction a'.
-          intros.
-          inversion H4.
-          inversion H7.
-          inversion H9.
-
-          intros.
-          f_equal.
-          apply (H2 b0 b1).
-          split.
-          split.
-          apply H4.
-          apply H4.
-          apply H4.
-          apply H5.
-
-      destruct H3.
-      exists x0.
-      intro.
-      induction a.
-        intros.
-        simpl.
-        inversion H4.
-        inversion H6.
-
-        intros.
-        apply (H3 b0).
-        split.
-          apply H4.
-          apply H4.
+    +
+      intros a0 a'.
+      destruct a0, a'.
+      * intros;repeat mysplit;repeat myinv.
+      * intros;repeat mysplit;repeat myinv.
+      * intros;repeat mysplit;repeat myinv.
+      * intros;f_equal;apply (inj a0 a1);assumption.
+    +
+      destruct bound as (n,n_bound_f).
+      exists n. intros a0 petita0. destruct a0.
+      * mysplit; myinv.
+      * simpl; apply n_bound_f; apply petita0.
 Qed.
 
 Next Obligation.
+  destruct e1, e2, e2'.
+  - apply (J.(ES).(vendetta) a a0 a1) ;assumption.
+  - myinv.
+  - myinv.
+  - myinv.
+  - myinv.
+  - myinv.
+  - myinv.
+  - apply (G.(ES).(vendetta) a a0 a1);assumption.
+Qed.
+
+Definition Game_tenseur (J G :Game) : Game :=
+  Build_Game
+    (ES_tenseur J G)
+    (extension J.(ES).(A) G.(ES).(A) player J.(polarity) G.(polarity)).
+
+(**
+* Définition d'un jeu dual
+*)
+
+Definition Game_dual (J : Game) : Game :=
+  Build_Game J.(ES) (fun x => match J.(polarity) x with |O=>P|P=>O end).
+
+(**
+* Définition d'un jeu thèse
+*)
+Definition Game_these (J G : Game) : Game :=
+  Game_tenseur (Game_dual J) G.

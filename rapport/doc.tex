@@ -215,9 +215,9 @@ Une stratégie sur le jeu $A$ est $\sigma \subset \mathcal{P}(A)$ qui est
 
 $\epsilon \in \sigma$
 
-\item clos par préfixe :
+\item clos par préfixe pair :
 
-$\forall e \in \sigma, \forall e', e' \sqsubseteq e \implies e' \in \sigma$
+$\forall e \in \sigma, \forall e', |e'| \text{ pair } \implies e' \sqsubseteq e \implies e' \in \sigma$
 
 \item déterministe :
 
@@ -226,11 +226,6 @@ est unique, déterminé)
 
 $sa_1^+, sa_2^+ \in \sigma \implies a_1 = a_2$
 
-\item réceptive :
-
-(Si la partie est maximale alors c'est à + de jouer.)
-
-$s \in \sigma$ et $sa^- \in \mathcal{P}(A) \implies sa^- \in \sigma$
 \end{itemize}
 \end{answer}\end{minipage}
 
@@ -398,8 +393,8 @@ $\frac{}{\epsilon : \text{OPlay}_G}\epsilon_0$
 $\frac{\text{min}(a^-,G) \qquad s : \text{PPlay}_{G\backslash a}}
 {a^-s : \text{OPlay}_G}\text{OPlay}_i$
 
-$\frac{\text{min}(A^+,G) \qquad s : \text{OPlay}_{G\backslash a}}
-{A^+s : \text{PPlay}_G}\text{PPlay}_i$
+$\frac{\text{min}(a^+,G) \qquad s : \text{OPlay}_{G\backslash a}}
+{a^+s : \text{PPlay}_G}\text{PPlay}_i$
 \end{answer}\end{minipage}
 
 Notons alors que les parties ainsi définies finissent forcément par un coup

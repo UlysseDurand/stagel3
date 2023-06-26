@@ -20,7 +20,11 @@ Il se divise en plusieurs fichiers :
   - les structures d'événements
   - les configurations
   - les justifications
-  - les jeux.
+  - les jeux
+  - le jeu tenseur de deux jeux (ou parallèle)
+  - la preuve que ce sont bien des jeux
+  - le jeu dual d'un jeu
+  - le jeu thèse de deux jeux
   
 - theories/residu.v : Ce fichier contient ce qu'il faut pour définir un résidu, c'est à dire
   - la définition d'un jeu résiduel

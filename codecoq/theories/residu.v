@@ -5,7 +5,6 @@ Require Import jeu.
 * Définition des jeux résiduels
  *)
 
-
 Definition minGame :
   forall (G:Game) (a:@A (@ES G)), Prop:=
   fun G a => forall a',  ord a' a -> a' = a.
@@ -30,84 +29,49 @@ Program Definition resES :
       (@resEvent G a)
       ord
       conflict
-      _
-      _
-      _
-      _
-      _.
+      _ _ _ _ _.
 
 Next Obligation.
-  split.
-    intro. intro.
-    apply ord_ordonned. destruct H. apply H.
-  split.
-    intro. intros.
-    apply ord_ordonned. destruct H. apply H.
-    destruct H0. apply H0.
-    apply H1.
-    apply H2.
-
-    intro. intros.
-    destruct H. destruct H0. destruct H1.
-    pose proof G.(ES).(ord_ordonned).
-    destruct H7. destruct H8. apply (H9 e f g).
-    apply H. apply H0. apply H1. apply H2. apply H3.
+  destruct G.(ES).(ord_ordonned) as (Refl, (Sym, Trans)).
+  repeat split.
+  - intros e eEv; apply Refl; apply eEv.
+  - intros e f eEv fEv Ord_e_f; apply Sym;
+      [apply eEv | apply fEv | apply Ord_e_f].
+  - intros e f g eEv fEv gEV Ord_e_f Ord_f_g; apply Trans with f;
+    [apply eEv | apply fEv | apply gEV | apply Ord_e_f | apply Ord_f_g].
 Qed.
 
 Next Obligation.
-  intro.
-  pose proof G.(ES).(confl_irrefl).
-  apply (H1 e).
-  destruct H. apply H. apply H0.
+  apply (G.(ES).(confl_irrefl) e); apply H.
 Qed.
 
 Next Obligation.
-  apply G.(ES).(confl_sym).
-  destruct H. apply H.
-  destruct H0. apply H0.
+  apply G.(ES).(confl_sym); [apply H | apply H0].
 Qed.
 
-
 Next Obligation.
-  pose proof G.(ES).(finiteness).
-  specialize (H0 a0).
-  destruct H. destruct H0. apply H.
-  exists x.
-  destruct H0.
-  split.
-    apply (inject_restr_implic A x
+  destruct H as (a0dedans, (a0diffa, a0noconflita)).
+  destruct (G.(ES).(finiteness) a0) as (f,(f_inj, f_bound)); [ assumption| ].
+  exists f. split.
+  - apply (inject_restr_implic A f
                   (fun a':A => B a' /\ ord a' a0)
                   (fun a':A => resEvent G a a' /\ ord a' a0)
           ).
-    intro.
-    intro.
-    destruct H3.
-    split.
-    destruct H3. apply H3.
-    apply H4.
-    apply H0.
-
+    intros a1 (dedansa1, a1leqa0); split;[apply dedansa1 | apply a1leqa0].
+    exact f_inj.
+  -
     apply (
-        borned_restr_implic A x
+        borned_restr_implic A f
                   (fun a':A => B a' /\ ord a' a0)
                   (fun a':A => resEvent G a a' /\ ord a' a0)
           ).
-   intro.
-   intro.
-   destruct H3.
-   destruct H3.
-   split.
-    apply H3. apply H4.
-   apply H2.
+    intros a1 (dedansa1, a1leqa0); split;[apply dedansa1|apply a1leqa0].
+    exact f_bound.
 Qed.
 
 Next Obligation.
-  pose proof G.(ES).(vendetta).
-  destruct H. destruct H0. destruct H1.
-  apply (H4 e1 e2 e2').
-    apply H. apply H0. apply H1.
-    apply H2.
-    apply H3.
+  apply G.(ES).(vendetta) with e2;
+  [apply H | apply H0 | apply H1 | apply H2 | apply H3].
 Qed.
 
 Definition residual :
