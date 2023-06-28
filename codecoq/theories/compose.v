@@ -6,6 +6,13 @@ Require Import interactions.
 * Définiton du parallèle de deux stratégies
  *)
 
+Inductive parallele_strat `{J:Game} `{G:Game} `{H:Game}
+  (sigma : @strategy2 J G) (tau : @strategy2 G H) : (@OOO_int J G H) -> Prop :=
+  | bla : forall (u:(@OOO_int J G H)),
+      sigma.(S) (restriction_lm_OOO u) -> tau.(S) (restriction_mr_OOO u) ->
+        parallele_strat sigma tau u.
+
+
 Definition parallele_strat `{J:Game} `{G:Game} `{H:Game}
   (sigma : @strategy2 J G) (tau : @strategy2 G H) :
   (@OOO_int J G H) -> Prop :=

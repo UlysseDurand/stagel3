@@ -221,6 +221,9 @@ Class strategy2 `{J: Game} `{G: Game} :=
 * Définition des restrictions d'interaction
  *)
 
+Inductive restriction_lm_OOO_ind :>>>>
+
+
 Fixpoint restriction_lm_OOO `{J :Game} `{G :Game} `{H : Game}
 (u:(@OOO_int J G H)) : (@O_play2 J G) := match u with
   | nilOOO => nilO2
@@ -241,6 +244,8 @@ restriction_lm_POP `{J :Game} `{G :Game} `{H : Game}
   | consPOP_A a m n u' => consP_l a m n (restriction_lm_OOO u')
   end
 .
+
+Lemma bla: forall u, restriction_lm_OOO_ind u 5 restriction_lm_OOO u -
 
 
 Fixpoint restriction_mr_OOO `{J :Game} `{G :Game} `{H : Game}
