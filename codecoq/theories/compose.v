@@ -2,6 +2,14 @@ Require Import jeu.
 Require Import interactions.
 
 
+
+(**
+On va composer des stratégies, on peut soit composer
+- Une stratégie O avec une stratégie O (on obtient une stratégie O)
+- Une stratégie O avec une stratégie P (on obtient une stratégie P)
+- Une stratégie P avec une stratégie O (on obtient une stratégie P)
+ *)
+
 (**
 * Définiton du parallèle de deux stratégies
  *)
@@ -27,14 +35,7 @@ Inductive parallele_stratOP `{J:Game} `{G:Game} `{H:Game}
       tau.(SP) (restriction_mr_OPP u) ->
         parallele_stratOP sigma tau u.
 
-(*
-Lemma parallele_strat_prefixe_stable `{J:Game} `{G:Game} `{H:Game} :
-  forall (sigma:@strategy2 J G) (tau:@strategy2 G H) s1 s2,
-    prefixOOO s1 s2 ->
-    parallele_strat sigma tau s2 ->
-      parallele_strat sigma tau s1.
-Admitted.
-*)
+
 
 (**
 * Définition de la composition de deux stratégies
@@ -65,6 +66,7 @@ Inductive partiecomposeOP `{J:Game} `{G:Game} `{H:Game}
         partiecomposeOP sigma tau (restriction_lr_OPP u).
 
 
+
 Lemma composeOO_nonempty `{J:Game} `{G:Game} `{H:Game}
   (sigma : @strategy2O J G) (tau : @strategy2O G H) : partiecomposeOO sigma tau nilO2.
 Proof.
@@ -78,23 +80,56 @@ Proof.
     ).
 Qed.
 
-Lemma prefix_donc_parallele `{J:Game} `{G:Game} `{H:Game}:
-    (
-      forall (sigma : @strategy2O J G) (tau :  @strategy2O G H) (u v:@OOO_int J G H),
-      (parallele_stratOO sigma tau) u -> prefixOOO v u -> (parallele_stratOO sigma tau) v
-    ) /\
-    (
 
-      forall (sigma : @strategy2O J G) (tau :  @strategy2P G H) (u v:@OPP_int J G H),
-      (parallele_stratOP sigma tau) u -> prefixOPP v u -> (parallele_stratOP sigma tau) v
-    ) /\
-    (
 
-      forall (sigma : @strategy2P J G) (tau :  @strategy2O G H) (u v:@POP_int J G H),
-      (parallele_stratPO sigma tau) u -> prefixPOP v u -> (parallele_stratPO sigma tau) v
-    ).
+(**
+Prouvons que la propriété d'être dans sigma parallele tau
+est stable par préfixeOOO.
+ *)
 
+Lemma prefixe_donc_paralleleOO `{J:Game} `{G:Game} `{H:Game} :
+    forall (u:@OOO_int J G H) (v:@OOO_int J G H)
+      (sigma:@strategy2O J G) (tau:@strategy2O G H),
+    (parallele_stratOO sigma tau) u ->
+    prefixOOO v u ->
+      (parallele_stratOO sigma tau) v.
 Proof.
+  apply (OOO_induc
+    (fun J0 G0 H0 u =>
+      forall (v:@OOO_int J0 G0 H0)
+        (sigma:@strategy2O J0 G0) (tau: @strategy2O G0 H0),
+        (parallele_stratOO sigma tau) u ->
+        prefixOOO v u ->
+          (parallele_stratOO sigma tau) v
+    )
+    (fun J0 G0 H0 u =>
+      forall (v:@OPP_int J0 G0 H0)
+        (sigma:@strategy2O J0 G0) (tau: @strategy2P G0 H0),
+        (parallele_stratOP sigma tau) u ->
+        prefixOPP v u ->
+          (parallele_stratOP sigma tau) v
+    )
+    (fun J0 G0 H0 u =>
+      forall (v:@POP_int J0 G0 H0)
+        (sigma:@strategy2P J0 G0) (tau: @strategy2O G0 H0),
+        (parallele_stratPO sigma tau) u ->
+        prefixPOP v u ->
+          (parallele_stratPO sigma tau) v
+    )
+  ).
+  - intros J0 G0 H0 v sigma tau nilparall vprefnil.
+    induction v.
+    * apply (respecte_stratsOO sigma tau nilOOO) ;
+      [apply sigma.(SO_nonempty)|apply tau.(SO_nonempty)].
+    * inversion vprefnil.
+    * inversion vprefnil.
+
+  - intros J0 G0 H0 a m n s HI v sigma tau.
+    intros consas_parall vprefconsas.
+    induction v.
+    * apply (respecte_stratsOO sigma tau nilOOO) ;
+      [apply sigma.(SO_nonempty)|apply tau.(SO_nonempty)].
+    * apply (respecte_stratsOO sigma tau).
 
 Lemma compose_prefix_closed `{J:Game} `{G:Game} `{H:Game} :
       forall (sigma : @strategy2O J G) (tau : @strategy2O G H) s1 (u:@OOO_int J G H),

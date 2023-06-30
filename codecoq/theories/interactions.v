@@ -1,6 +1,7 @@
 Require Import jeu.
 Require Import residu.
 Require Import strategy.
+Require Import jeuthese.
 
 
 (**
@@ -52,6 +53,10 @@ with POP_int `{A:Game} `{B:Game} `{C:Game} :=
     @POP_int A B C
 .
 
+Scheme OOO_induc := Induction for OOO_int Sort Prop
+with OPP_induc := Induction for OPP_int Sort Prop
+with POP_induc := Induction for POP_int Sort Prop.
+
 
 
 Inductive prefixOOO `{J:Game} `{G:Game} `{H:Game} :
@@ -87,150 +92,15 @@ with prefixPOP `{J:Game} `{G:Game} `{H:Game} :
       prefixPOP (consPOP_A a m n s) (consPOP_A a m' n' s')
 .
 
+Scheme prefixOOO_induc := Induction for prefixOOO Sort Prop
+with prefixOPP_induc := Induction for prefixOPP Sort Prop
+with prefixPOP_induc := Induction for prefixPOP Sort Prop.
 
-
-(**
-Dans la suite tous les 2 désignent la version d'un objet adaptée
-pour un jeu A thèse B
- *)
-
-(**
-* Définition d'une partie sur un jeu A thèse B
- *)
-
-Inductive O_play2 `{J:Game} `{G:Game}:=
-| nilO2 :
-    @O_play2 J G
-
-| consO_l : forall a,
-  minGame J a ->
-  @pos J a ->
-  @P_play2 (residual J a) G ->
-    @O_play2 J G
-
-| consO_r : forall b,
-  minGame G b ->
-  @neg G b ->
-  @P_play2 J (residual G b) ->
-    @O_play2 J G
-
-
-with P_play2 `{J:Game} `{G:Game}:=
-| consP_l : forall a,
-  minGame J a ->
-  @neg J a ->
-  @O_play2 (residual J a) G ->
-    @P_play2 J G
-
-| consP_r : forall b,
-  minGame G b ->
-  @pos G b ->
-  @O_play2 J (residual G b) ->
-    @P_play2 J G.
-
-Check consO_l.
-
-
-(**
-* Définition d'une stratégie sur un jeu A thèse B
- *)
-
-Inductive prefixO2 `{J:Game} `{G:Game} :
-  (@O_play2 J G)-> (@O_play2 J G)-> Prop:=
-| nil_prefO2 : forall s,
-    prefixO2 nilO2 s
-
-| cons_prefO2_l: forall (a:J.(ES).(A)) m m' n n' (s s': (@P_play2 (residual J a) G)),
-  @prefixP2 (residual J a) G s s'->
-    @prefixO2 J G (@consO_l J G a m n s) (@consO_l J G a m' n' s')
-
-| cons_prefO2_r: forall (a:G.(ES).(A)) m m' n n' (s s': (@P_play2 J (residual G a))),
-  @prefixP2 J (residual G a) s s' ->
-    @prefixO2 J G (@consO_r J G a m n s) (@consO_r J G a m' n' s')
-
-
-with  prefixP2 `{J:Game} `{G:Game} :
-  @P_play2 J G -> @P_play2 J G-> Prop:=
-| cons_prefP2_l: forall (a:J.(ES).(A)) m m' p p' (s s': (@O_play2 (residual J a) G)),
-  @prefixO2 (residual J a) G s s' ->
-    @prefixP2 J G (@consP_l J G a m p s) (@consP_l J G a m' p' s')
-
-| cons_prefP2_r: forall (a:G.(ES).(A)) m m' p p' (s s': (@O_play2 J (residual G a))),
-  @prefixO2 J (residual G a) s s' ->
-    @prefixP2 J G (@consP_r J G a m p s) (@consP_r J G a m' p' s').
-
-
-
-Definition prefixO2_closed `{J:Game} `{G:Game} (Pos : (@O_play2 J G) -> Prop) :=
-  forall (s s' : (@O_play2 J G)), Pos s' -> (@prefixO2 J G) s s' -> Pos s.
-
-Definition prefixP2_closed `{J:Game} `{G:Game} (Pos : (@P_play2 J G) -> Prop) :=
-  forall (s s' : (@P_play2 J G)), Pos s' -> (@prefixP2 J G) s s' -> Pos s.
-
-
-
-Inductive coherentO2 `{J : Game} `{G : Game} : (@O_play2 J G) -> (@O_play2 J G) -> Prop :=
-  | nil_cohO2_l : forall s,
-      @coherentO2 J G nilO2 s
-
-  | nil_cohO2_r : forall s,
-      @coherentO2 J G s nilO2
-
-  | cons_cohO2_neq_ll : forall a a' s s' m m' n n',
-    not (a=a') ->
-      @coherentO2 J G (@consO_l _ _ a m n s) (@consO_l _ _ a' m' n' s')
-
-  | cons_cohO2_neq_rr : forall a a' s s' m m' n n',
-    not (a=a') ->
-      @coherentO2 J G (@consO_r _ _ a m n s) (@consO_r _ _ a' m' n' s')
-
-  | cons_cohO2_neq_lr : forall a a' (s : @P_play2 (residual J a) G) (s': @P_play2 J (residual G a')) m m' n n',
-      @coherentO2 J G (@consO_l _ _ a m n s) (@consO_r _ _ a' m' n' s')
-
-  | cons_cohO2_neq_rl : forall a a' s s' m m' n n',
-      @coherentO2 J G (@consO_r _ _ a m n s) (@consO_l _ _ a' m' n' s')
-
-  | cons_cohO2_eq_l : forall (a:J.(ES).(A)) (s s':(@P_play2 (residual J a) G)) m m' n n',
-    @coherentP2 (residual J a) G s s' ->
-      @coherentO2 J G (@consO_l J G a m n s) (@consO_l J G a m' n' s')
-
-  | cons_cohO2_eq_r : forall (a:G.(ES).(A)) (s s':(@P_play2 J (residual G a))) m m' n n',
-    @coherentP2 J (residual G a) s s' ->
-      @coherentO2 J G (@consO_r J G a m n s) (@consO_r J G a m' n' s')
-
-  with coherentP2 `{J : Game} `{G : Game} : (@P_play2 J G)-> (@P_play2 J G) -> Prop :=
-  | cons_cohP2_eq_l : forall (a:J.(ES).(A)) (s s':(@O_play2 (residual J a) G)) m m' n n',
-    @coherentO2 (residual J a) G s s' ->
-      @coherentP2 J G (@consP_l J G a m n s) (@consP_l J G a m' n' s')
-
-  | cons_cohP2_eq_r : forall (a:G.(ES).(A)) (s s':(@O_play2 J (residual G a))) m m' n n',
-    @coherentO2 J (residual G a) s s' ->
-      @coherentP2 J G (@consP_r J G a m n s) (@consP_r J G a m' n' s')
-.
-
-
-
-Class strategy2O `{J: Game} `{G: Game} :=
-  {
-    SO: (@O_play2 J G) -> Prop;
-    SO_nonempty : SO nilO2;
-    SO_closed : (@prefixO2_closed J G) SO;
-    SO_det : forall s s', SO s  -> SO s' -> (@coherentO2 J G) s s';
-  }.
-
-Class strategy2P `{J: Game} `{G: Game} :=
-  {
-    SP: (@P_play2 J G) -> Prop;
-    SP_closed : (@prefixP2_closed J G) SP;
-    SP_det : forall s s', SP s -> SP s' -> (@coherentP2 J G) s s';
-  }.
 
 
 (**
 * Définition des restrictions d'interaction
  *)
-
-
 
 Fixpoint restriction_lm_OOO `{J :Game} `{G :Game} `{H : Game}
 (u:(@OOO_int J G H)) : (@O_play2 J G) := match u with
@@ -275,6 +145,7 @@ restriction_mr_POP `{J :Game} `{G :Game} `{H : Game}
   | consPOP_A a m n u' => restriction_mr_OOO u'
   end
 .
+
 
 
 Fixpoint restriction_lr_OOO `{J :Game} `{G :Game} `{H : Game}
