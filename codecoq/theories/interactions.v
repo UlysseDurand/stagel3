@@ -161,8 +161,11 @@ with  prefixP2 `{J:Game} `{G:Game} :
 
 
 
-Definition prefixO2_closed `{J:Game} `{G:Game} (Pos : (@O_play2 J G) ->Prop) :=
+Definition prefixO2_closed `{J:Game} `{G:Game} (Pos : (@O_play2 J G) -> Prop) :=
   forall (s s' : (@O_play2 J G)), Pos s' -> (@prefixO2 J G) s s' -> Pos s.
+
+Definition prefixP2_closed `{J:Game} `{G:Game} (Pos : (@P_play2 J G) -> Prop) :=
+  forall (s s' : (@P_play2 J G)), Pos s' -> (@prefixP2 J G) s s' -> Pos s.
 
 
 
@@ -207,21 +210,26 @@ Inductive coherentO2 `{J : Game} `{G : Game} : (@O_play2 J G) -> (@O_play2 J G) 
 
 
 
-Class strategy2 `{J: Game} `{G: Game} :=
+Class strategy2O `{J: Game} `{G: Game} :=
   {
-    S: (@O_play2 J G) -> Prop;
-    S_nonempty : S nilO2;
-    S_closed : (@prefixO2_closed J G) S;
-    S_det : forall s s', S s  -> S s' -> (@coherentO2 J G) s s';
+    SO: (@O_play2 J G) -> Prop;
+    SO_nonempty : SO nilO2;
+    SO_closed : (@prefixO2_closed J G) SO;
+    SO_det : forall s s', SO s  -> SO s' -> (@coherentO2 J G) s s';
   }.
 
+Class strategy2P `{J: Game} `{G: Game} :=
+  {
+    SP: (@P_play2 J G) -> Prop;
+    SP_closed : (@prefixP2_closed J G) SP;
+    SP_det : forall s s', SP s -> SP s' -> (@coherentP2 J G) s s';
+  }.
 
 
 (**
 * Définition des restrictions d'interaction
  *)
 
-Inductive restriction_lm_OOO_ind :>>>>
 
 
 Fixpoint restriction_lm_OOO `{J :Game} `{G :Game} `{H : Game}
@@ -245,7 +253,6 @@ restriction_lm_POP `{J :Game} `{G :Game} `{H : Game}
   end
 .
 
-Lemma bla: forall u, restriction_lm_OOO_ind u 5 restriction_lm_OOO u -
 
 
 Fixpoint restriction_mr_OOO `{J :Game} `{G :Game} `{H : Game}
