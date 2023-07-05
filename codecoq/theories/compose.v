@@ -1,5 +1,10 @@
 Require Import jeu.
+Require Import jeuthese.
 Require Import interactions.
+Require Import strategy.
+Require Import residu.
+Require Import Coq.Program.Equality.
+Require Import residustrat.
 
 
 
@@ -67,25 +72,11 @@ Inductive partiecomposeOP `{J:Game} `{G:Game} `{H:Game}
 
 
 
-Lemma composeOO_nonempty `{J:Game} `{G:Game} `{H:Game}
-  (sigma : @strategy2O J G) (tau : @strategy2O G H) : partiecomposeOO sigma tau nilO2.
-Proof.
-  exact (
-      (restr_temoinsOO sigma tau nilOOO)
-      (respecte_stratsOO sigma tau
-         nilOOO
-         (sigma.(SO_nonempty))
-         (tau.(SO_nonempty))
-      )
-    ).
-Qed.
-
-
-
 (**
 Prouvons que la propriété d'être dans sigma parallele tau
 est stable par préfixeOOO.
  *)
+Check OOO_induc.
 
 Lemma prefixe_donc_paralleleOO `{J:Game} `{G:Game} `{H:Game} :
     forall (u:@OOO_int J G H) (v:@OOO_int J G H)
@@ -117,19 +108,133 @@ Proof.
           (parallele_stratPO sigma tau) v
     )
   ).
-  - intros J0 G0 H0 v sigma tau nilparall vprefnil.
-    induction v.
-    * apply (respecte_stratsOO sigma tau nilOOO) ;
-      [apply sigma.(SO_nonempty)|apply tau.(SO_nonempty)].
-    * inversion vprefnil.
-    * inversion vprefnil.
 
+  - intros J0 G0 H0 v sigma tau nilparall vprefnil.
+    induction v; [assumption| inversion vprefnil|inversion vprefnil].
   - intros J0 G0 H0 a m n s HI v sigma tau.
     intros consas_parall vprefconsas.
-    induction v.
-    * apply (respecte_stratsOO sigma tau nilOOO) ;
-      [apply sigma.(SO_nonempty)|apply tau.(SO_nonempty)].
-    * apply (respecte_stratsOO sigma tau).
+    destruct v.
+    * dependent destruction consas_parall.
+      exact (
+        respecte_stratsOO sigma tau nilOOO
+          (
+            sigma.(SO_closed)
+            nilO2
+            (restriction_lm_OOO (consOOO_C a m n s))
+            s0
+            (nil_prefO2 (restriction_lm_OOO (consOOO_C a m n s)))
+          )
+          (
+            tau.(SO_closed)
+            nilO2
+            (restriction_mr_OOO (consOOO_C a m n s))
+            s1
+            (nil_prefO2 (restriction_mr_OOO (consOOO_C a m n s)))
+          )
+      ).
+    * dependent destruction vprefconsas.
+
+      assert (m0=m) as H2. admit. assert (n0=n) as H3. admit. rewrite H2. rewrite H3. destruct H2. destruct H3.
+
+      dependent destruction consas_parall.
+      destruct (
+        (HI o sigma (residu_stratP_r a m0 n0 tau))
+        (respecte_stratsOP sigma (residu_stratP_r a m0 n0 tau) s s0 s1)
+        H1
+      ) as (s2,s3).
+      exact ((respecte_stratsOO sigma tau (consOOO_C a m0 n0 o)) s2 s3).
+    * inversion vprefconsas.
+  - intros J0 G0 H0 a m n s HI v sigma tau.
+    intros consas_parall vprefconsas.
+    destruct v.
+    * dependent destruction consas_parall.
+      exact (
+        respecte_stratsOO sigma tau nilOOO
+          (
+            sigma.(SO_closed)
+            nilO2
+            (restriction_lm_OOO (consOOO_A a m n s))
+            s0
+            (nil_prefO2 (restriction_lm_OOO (consOOO_A a m n s)))
+          )
+          (
+            tau.(SO_closed)
+            nilO2
+            (restriction_mr_OOO (consOOO_A a m n s))
+            s1
+            (nil_prefO2 (restriction_mr_OOO (consOOO_A a m n s)))
+          )
+      ).
+    * inversion vprefconsas.
+    * dependent destruction vprefconsas.
+
+      assert (m0=m) as H2. admit. assert (p=n) as H3. admit. rewrite H2. rewrite H3. destruct H2. destruct H3.
+
+      dependent destruction consas_parall.
+      destruct(
+        HI p0 (residu_stratP_l a m0 p sigma) tau
+        (respecte_stratsPO (residu_stratP_l a m0 p sigma) tau s s0 s1)
+        H1
+      ) as (s2,s3).
+      exact ((respecte_stratsOO sigma tau (consOOO_A a m0 p p0)) s2 s3).
+  - intros J0 G0 H0 a m n s HI v sigma tau.
+    intros consas_parall vprefconsas.
+    destruct v.
+    * dependent destruction vprefconsas.
+
+      assert (m0=m) as H2. admit. assert (p=n) as H3. admit. rewrite H2. rewrite H3. destruct H2. destruct H3.
+
+      dependent destruction consas_parall.
+      destruct (
+        HI o sigma (residu_stratO_r a m0 p tau)
+        (respecte_stratsOO sigma (residu_stratO_r a m0 p tau) s s0 s1)
+        H1
+      ) as (s2,s3).
+      exact ((respecte_stratsOP sigma tau (consOPP_C a m0 p o)) s2 s3).
+    * inversion vprefconsas.
+  - intros J0 G0 H0 a m n s HI v sigma tau.
+    intros consas_parall vprefconsas.
+    destruct v.
+    * inversion vprefconsas.
+    * dependent destruction vprefconsas.
+
+      assert (m0=m) as H2. admit. assert (n0=n) as H3. admit. rewrite H2. rewrite H3. destruct H2. destruct H3.
+      dependent destruction consas_parall.
+      destruct (
+        (HI p (residu_stratP_r a m0 n0 sigma) (residu_stratO_l a m0 n0 tau))
+        (respecte_stratsPO (residu_stratP_r a m0 n0 sigma) (residu_stratO_l a m0 n0 tau) s s0 s1)
+        H1
+      ) as (s2,s3).
+      exact ((respecte_stratsOP sigma tau (consOPP_B a m0 n0 p)) s2 s3).
+  - intros J0 G0 H0 a m n s HI v sigma tau.
+    intros consas_parall vprefconsas.
+    destruct v.
+    * dependent destruction vprefconsas.
+
+      assert (m0=m) as H2. admit. assert (p=n) as H3. admit. rewrite H2. rewrite H3. destruct H2. destruct H3.
+      dependent destruction consas_parall.
+      destruct (
+        (HI o (residu_stratO_r a m0 p sigma) (residu_stratP_l a m0 p tau))
+        (respecte_stratsOP (residu_stratO_r a m0 p sigma) (residu_stratP_l a m0 p tau) s s0 s1)
+        H1
+      ) as (s2,s3).
+      exact ((respecte_stratsPO sigma tau (consPOP_B a m0 p o)) s2 s3).
+    * inversion vprefconsas.
+  - intros J0 G0 H0 a m n s HI v sigma tau.
+    intros consas_parall vprefconsas.
+    destruct v.
+    * inversion vprefconsas.
+    * dependent destruction vprefconsas.
+
+      assert (m0=m) as H2. admit. assert (n0=n) as H3. admit. rewrite H2. rewrite H3. destruct H2. destruct H3.
+      dependent destruction consas_parall.
+      destruct (
+        (HI o (residu_stratO_l a m0 n0 sigma) tau)
+        (respecte_stratsOO (residu_stratO_l a m0 n0 sigma) tau s s0 s1)
+        H1
+      ) as (s2,s3).
+      exact ((respecte_stratsPO sigma tau (consPOP_A a m0 n0 o)) s2 s3).
+Admitted.
 
 Lemma compose_prefix_closed `{J:Game} `{G:Game} `{H:Game} :
       forall (sigma : @strategy2O J G) (tau : @strategy2O G H) s1 (u:@OOO_int J G H),

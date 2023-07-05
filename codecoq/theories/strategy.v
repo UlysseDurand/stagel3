@@ -37,15 +37,15 @@ Inductive prefixO `{G:Game} : O_play -> O_play -> Prop:=
 | nil_prefO : forall s,
     prefixO nilO s
 
-| cons_prefO: forall a m m' n n' s s',
+| cons_prefO: forall a m n s s',
   @prefixP (residual G a) s s' ->
-    prefixO (@consO _ a m n s) (@consO _ a m' n' s')
+    prefixO (@consO _ a m n s) (@consO _ a m n s')
 
 
 with  prefixP `{G:Game} : P_play -> P_play -> Prop:=
-| cons_prefP: forall a m m' p p' s s',
+| cons_prefP: forall a m p s s',
   @prefixO (residual G a) s s' ->
-    prefixP (@consP _ a m p s) (@consP _ a m' p' s').
+    prefixP (@consP _ a m p s) (@consP _ a m p s').
 
 
 
@@ -65,15 +65,15 @@ Inductive coherentO `{G:Game} : O_play -> O_play -> Prop:=
   not( a = a') ->
     coherentO (@consO _ a m n s) (@consO _ a' m' n' s')
 
-| cons_coherentO_eq : forall a m m' n n' s s',
+| cons_coherentO_eq : forall a m n s s',
   @coherentP (residual G a) s s' ->
-    coherentO (@consO _ a m n s) (@consO _ a m' n' s')
+    coherentO (@consO _ a m n s) (@consO _ a m n s')
 
 
 with  coherentP `{G:Game} : P_play -> P_play -> Prop:=
-| cons_coherentP_eq : forall a m m' n n' s s',
+| cons_coherentP_eq : forall a m n s s',
   @coherentO (residual G a) s s' ->
-    coherentP (@consP _ a m n s) (@consP _ a m' n' s').
+    coherentP (@consP _ a m n s) (@consP _ a m n s').
 
 
 

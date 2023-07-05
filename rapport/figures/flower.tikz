@@ -1,0 +1,9 @@
+\begin{tikzpicture}[scale=0.5]
+ \draw[thick, rounded corners] (-2,-2) rectangle (2,2);
+ \fill[white] (-1.5,-1.5) circle (0.75);
+ \fill[white] (1.5,-1.5) circle (0.75);
+ \draw (-1.5,-1.5) -- (-0.5,-1.5);
+ \draw (-0.5,-1.5) -- (0.5,-1.5);
+ \draw (0.5,-1.5) -- (1.5,-1.5);
+ \draw (1.5,-1.5) -- (2,-2);
+\end{tikzpicture}

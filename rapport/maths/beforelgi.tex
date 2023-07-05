@@ -36,8 +36,8 @@ loadpackages()
 \newsavebox{\mybox}
 \newlength{\mydepth}
 \newlength{\myheight}
-\newenvironment{answer}
-{\par\begin{lrbox}{\mybox}\quad\begin{minipage}{\linewidth}\color{black}\setlength{\parskip}{10pt plus 1pt minus 1pt}\vspace*{-.7\baselineskip}}
+\newenvironment{answer}[1]
+{\vspace{0.5cm}\begin{minipage}{\linewidth}\textbf{\textit{\underline{#1}}}\par\begin{lrbox}{\mybox}\quad\begin{minipage}{\linewidth}\color{black}\setlength{\parskip}{10pt}}
 {\end{minipage}\end{lrbox}
 \settodepth{\mydepth}{\usebox{\mybox}}
 \settoheight{\myheight}{\usebox{\mybox}}
@@ -45,6 +45,7 @@ loadpackages()
 \noindent\makebox[0pt]{
   \color{gray}\hspace{-0pt}\rule[-\mydepth]{1pt}{\myheight}}
 \usebox{\mybox}
+\end{minipage}
   }
 
 \usepackage{listings}
@@ -63,7 +64,6 @@ loadpackages()
 \setlist[itemize]{topsep=0pt}
 
 \usepackage{hyperref}
-\setlength{\parskip}{0.15cm}
 \hypersetup{
     colorlinks=truem,
     linkcolor=black,

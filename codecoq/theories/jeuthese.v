@@ -57,24 +57,24 @@ Inductive prefixO2 `{J:Game} `{G:Game} :
 | nil_prefO2 : forall s,
     prefixO2 nilO2 s
 
-| cons_prefO2_l: forall (a:J.(ES).(A)) m m' n n' (s s': (@P_play2 (residual J a) G)),
+| cons_prefO2_l: forall (a:J.(ES).(A)) m n (s s': (@P_play2 (residual J a) G)),
   @prefixP2 (residual J a) G s s'->
-    @prefixO2 J G (@consO_l J G a m n s) (@consO_l J G a m' n' s')
+    @prefixO2 J G (@consO_l J G a m n s) (@consO_l J G a m n s')
 
-| cons_prefO2_r: forall (a:G.(ES).(A)) m m' n n' (s s': (@P_play2 J (residual G a))),
+| cons_prefO2_r: forall (a:G.(ES).(A)) m n (s s': (@P_play2 J (residual G a))),
   @prefixP2 J (residual G a) s s' ->
-    @prefixO2 J G (@consO_r J G a m n s) (@consO_r J G a m' n' s')
+    @prefixO2 J G (@consO_r J G a m n s) (@consO_r J G a m n s')
 
 
 with  prefixP2 `{J:Game} `{G:Game} :
   @P_play2 J G -> @P_play2 J G-> Prop:=
-| cons_prefP2_l: forall (a:J.(ES).(A)) m m' p p' (s s': (@O_play2 (residual J a) G)),
+| cons_prefP2_l: forall (a:J.(ES).(A)) m p (s s': (@O_play2 (residual J a) G)),
   @prefixO2 (residual J a) G s s' ->
-    @prefixP2 J G (@consP_l J G a m p s) (@consP_l J G a m' p' s')
+    @prefixP2 J G (@consP_l J G a m p s) (@consP_l J G a m p s')
 
-| cons_prefP2_r: forall (a:G.(ES).(A)) m m' p p' (s s': (@O_play2 J (residual G a))),
+| cons_prefP2_r: forall (a:G.(ES).(A)) m p (s s': (@O_play2 J (residual G a))),
   @prefixO2 J (residual G a) s s' ->
-    @prefixP2 J G (@consP_r J G a m p s) (@consP_r J G a m' p' s').
+    @prefixP2 J G (@consP_r J G a m p s) (@consP_r J G a m p s').
 
 Scheme prefixO2_induc := Induction for prefixO2 Sort Prop
 with prefixP2_induc := Induction for prefixP2 Sort Prop.
@@ -110,22 +110,22 @@ Inductive coherentO2 `{J : Game} `{G : Game} : (@O_play2 J G) -> (@O_play2 J G) 
   | cons_cohO2_neq_rl : forall a a' s s' m m' n n',
       @coherentO2 J G (@consO_r _ _ a m n s) (@consO_l _ _ a' m' n' s')
 
-  | cons_cohO2_eq_l : forall (a:J.(ES).(A)) (s s':(@P_play2 (residual J a) G)) m m' n n',
+  | cons_cohO2_eq_l : forall (a:J.(ES).(A)) (s s':(@P_play2 (residual J a) G)) m n,
     @coherentP2 (residual J a) G s s' ->
-      @coherentO2 J G (@consO_l J G a m n s) (@consO_l J G a m' n' s')
+      @coherentO2 J G (@consO_l J G a m n s) (@consO_l J G a m n s')
 
-  | cons_cohO2_eq_r : forall (a:G.(ES).(A)) (s s':(@P_play2 J (residual G a))) m m' n n',
+  | cons_cohO2_eq_r : forall (a:G.(ES).(A)) (s s':(@P_play2 J (residual G a))) m n,
     @coherentP2 J (residual G a) s s' ->
-      @coherentO2 J G (@consO_r J G a m n s) (@consO_r J G a m' n' s')
+      @coherentO2 J G (@consO_r J G a m n s) (@consO_r J G a m n s')
 
   with coherentP2 `{J : Game} `{G : Game} : (@P_play2 J G)-> (@P_play2 J G) -> Prop :=
-  | cons_cohP2_eq_l : forall (a:J.(ES).(A)) (s s':(@O_play2 (residual J a) G)) m m' n n',
+  | cons_cohP2_eq_l : forall (a:J.(ES).(A)) (s s':(@O_play2 (residual J a) G)) m n,
     @coherentO2 (residual J a) G s s' ->
-      @coherentP2 J G (@consP_l J G a m n s) (@consP_l J G a m' n' s')
+      @coherentP2 J G (@consP_l J G a m n s) (@consP_l J G a m n s')
 
-  | cons_cohP2_eq_r : forall (a:G.(ES).(A)) (s s':(@O_play2 J (residual G a))) m m' n n',
+  | cons_cohP2_eq_r : forall (a:G.(ES).(A)) (s s':(@O_play2 J (residual G a))) m n,
     @coherentO2 J (residual G a) s s' ->
-      @coherentP2 J G (@consP_r J G a m n s) (@consP_r J G a m' n' s')
+      @coherentP2 J G (@consP_r J G a m n s) (@consP_r J G a m n s')
 .
 
 Scheme coherentO2_induc := Induction for coherentO2 Sort Prop
@@ -136,7 +136,6 @@ with coherentP2_induc := Induction for coherentP2 Sort Prop.
 Class strategy2O `{J: Game} `{G: Game} :=
   {
     SO: (@O_play2 J G) -> Prop;
-    SO_nonempty : SO nilO2;
     SO_closed : (@prefixO2_closed J G) SO;
     SO_det : forall s s', SO s  -> SO s' -> (@coherentO2 J G) s s';
   }.

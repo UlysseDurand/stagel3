@@ -64,32 +64,32 @@ Inductive prefixOOO `{J:Game} `{G:Game} `{H:Game} :
   | nil_prefOOO : forall (s:@OOO_int J G H),
       prefixOOO nilOOO s
 
-  | prefOOO_C : forall a m m' n n' s s',
+  | prefOOO_C : forall a m n s s',
     prefixOPP s s' ->
-      prefixOOO (consOOO_C a m n s) (consOOO_C a m' n' s')
+      prefixOOO (consOOO_C a m n s) (consOOO_C a m n s')
 
-  | prefOOO_A : forall a m m' n n' s s',
+  | prefOOO_A : forall a m n s s',
     prefixPOP s s' ->
-      prefixOOO (consOOO_A a m n s) (consOOO_A a m' n' s')
+      prefixOOO (consOOO_A a m n s) (consOOO_A a m n s')
 
 with prefixOPP `{J:Game} `{G:Game} `{H:Game} :
   (@OPP_int J G H) -> (@OPP_int J G H) -> Prop :=
-  | prefOPP_C : forall a m m' n n' s s',
+  | prefOPP_C : forall a m n s s',
     prefixOOO s s' ->
-      prefixOPP (consOPP_C a m n s) (consOPP_C a m' n' s')
-  | prefOPP_B : forall a m m' n n' s s',
+      prefixOPP (consOPP_C a m n s) (consOPP_C a m n s')
+  | prefOPP_B : forall a m n s s',
     prefixPOP s s' ->
-      prefixOPP (consOPP_B a m n s) (consOPP_B a m' n' s')
+      prefixOPP (consOPP_B a m n s) (consOPP_B a m n s')
 
 with prefixPOP `{J:Game} `{G:Game} `{H:Game} :
   (@POP_int J G H) -> (@POP_int J G H) -> Prop :=
-  | prefPOP_B : forall a m m' n n' s s',
+  | prefPOP_B : forall a m n s s',
     prefixOPP s s' ->
-      prefixPOP (consPOP_B a m n s) (consPOP_B a m' n' s')
+      prefixPOP (consPOP_B a m n s) (consPOP_B a m n s')
 
-  | prefPOP_A : forall a m m' n n' s s',
+  | prefPOP_A : forall a m n s s',
     prefixOOO s s' ->
-      prefixPOP (consPOP_A a m n s) (consPOP_A a m' n' s')
+      prefixPOP (consPOP_A a m n s) (consPOP_A a m n s')
 .
 
 Scheme prefixOOO_induc := Induction for prefixOOO Sort Prop

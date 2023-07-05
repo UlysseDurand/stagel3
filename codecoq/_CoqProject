@@ -5,6 +5,7 @@ theories/residu.v
 theories/strategy.v
 theories/jeuthese.v
 theories/interactions.v
+theories/residustrat.v
 theories/sanitycheck.v
 theories/main.v
 tests/test.v
