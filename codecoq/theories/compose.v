@@ -236,10 +236,40 @@ Proof.
       exact ((respecte_stratsPO sigma tau (consPOP_A a m0 n0 o)) s2 s3).
 Admitted.
 
+Lemma yeux_fermes `{J:Game} `{G:Game} `{H:Game} :
+  forall (sigma : @strategy2O J G) (tau : @strategy2O G H),
+    prefixO2_closed (partiecomposeOO sigma tau).
+Proof.
+  intros sigma tau s s' paralls' spres'.
+  Check (prefixO2_induc
+    (fun J0 H0 o o' prefoo' =>
+      forall (G0:Game) (sigma0:@strategy2O J0 G0) (tau0:@strategy2O G0 H0),
+      (partiecomposeOO sigma0 tau0 o') -> (partiecomposeOO sigma0 tau0 o)
+    )
+    (fun J0 H0 p p' prefpp' =>
+      forall (G0:Game) (sigma0:@strategy2O J0 G0) (tau0:@strategy2O G0 G0),
+      (partiecompose)
+    )
+        ).
+
 Lemma compose_prefix_closed `{J:Game} `{G:Game} `{H:Game} :
       forall (sigma : @strategy2O J G) (tau : @strategy2O G H) s1 (u:@OOO_int J G H),
       prefixO2 s1 (restriction_lr_OOO u) -> exists v, ((restriction_lr_OOO v) = s1) /\ (prefixOOO v u).
-  Admitted.
+Proof.
+  intros sigma tau s1 u prefs1urestr.
+  Check prefixO2_induc.
+  apply (prefixO2_induc
+    (fun J0 G0 H0 o o' prefoo'  =>
+      forall (sigma:@strategy2O J0 G0) (tau:@strategy2O G0 H0),
+        exists (v:@OOO_int, restriction_lr_OOO v = o /\ prefixOOO v o')
+      forall (v:@OOO_int J0 G0 H0)
+        (sigma:@strategy2O J0 G0) (tau: @strategy2O G0 H0),
+        (parallele_stratOO sigma tau) u ->
+        prefixOOO v u ->
+          (parallele_stratOO sigma tau) v
+    )
+  ).
+Admitted.
 
 Lemma prefix_closedOO `{J:Game} `{G:Game} `{H:Game}
   (sigma : @strategy2O J G) (tau : @strategy2O G H) :
@@ -247,15 +277,12 @@ Lemma prefix_closedOO `{J:Game} `{G:Game} `{H:Game}
       (partiecomposeOO sigma tau) s1.
 Proof.
   intros s1 s2 (u,u_parall) s1prefs2.
-  pose proof (@compose_prefix_closed J G H sigma tau s1 u).
   assert (exists v : OOO_int, restriction_lr_OOO v = s1 /\ prefixOOO v u).
-  apply H0; apply s1prefs2.
-  destruct H1 as (v,(restrvs1,prefvu)).
+  apply (@compose_prefix_closed J G H sigma tau s1 u); apply s1prefs2.
+  destruct H0 as (v,(restrvs1,prefvu)).
   rewrite <- restrvs1.
-  assert (parallele_stratOO sigma tau v).
-  admit.
-  exact (restr_temoinsOO sigma tau v H1).
-
+  exact (restr_temoinsOO sigma tau v (prefixe_donc_paralleleOO u v sigma tau u_parall prefvu)).
+Qed.
 
 Program Definition composeOO `{J:Game} `{G:Game} `{H:Game}
   (sigma : @strategy2O J G) (tau : @strategy2O G H) :
@@ -264,7 +291,6 @@ Program Definition composeOO `{J:Game} `{G:Game} `{H:Game}
     J
     H
     (partiecomposeOO sigma tau)
-    (composeOO_nonempty sigma tau)
     (prefix_closedOO sigma tau)
     _.
 
